@@ -44,6 +44,8 @@
 #include <math.h>
 #include <limits>
 
+#include "ColetaDados.h"
+
 
 //! \ingroup TLibEncoder
 //! \{
@@ -311,6 +313,10 @@ Void TEncSearch::init(TEncCfg*       pcEncCfg,
 __inline Void TEncSearch::xTZSearchHelp( const TComPattern* const pcPatternKey, IntTZSearchStruct& rcStruct, const Int iSearchX, const Int iSearchY, const UChar ucPointNr, const UInt uiDistance )
 {
   Distortion  uiSad = 0;
+
+#if COLETADADOS_H  
+  ColetaDados::incrementaBlocosCalculados();
+#endif
 
   const Pel* const  piRefSrch = rcStruct.piRefY + iSearchY * rcStruct.iYStride + iSearchX;
 
