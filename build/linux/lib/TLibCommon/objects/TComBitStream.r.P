@@ -1,9 +1,9 @@
 objects/TComBitStream.r.o: \
- /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.cpp \
- /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.h \
- /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h \
- /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h
- /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.cpp :
- /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.h :
- /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h :
- /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.cpp \
+ /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.h \
+ /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h
+ /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.cpp :
+ /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComBitStream.h :
+ /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h :
