@@ -1,0 +1,11 @@
+objects/TComMotionInfo.r.o: \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComMotionInfo.cpp \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComMotionInfo.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComMv.h
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComMotionInfo.cpp :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComMotionInfo.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComMv.h :

@@ -1,0 +1,15 @@
+objects/SyntaxElementWriter.r.o: \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/SyntaxElementWriter.cpp \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/SyntaxElementWriter.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComBitStream.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComRom.h
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/SyntaxElementWriter.cpp :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/SyntaxElementWriter.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComBitStream.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComRom.h :

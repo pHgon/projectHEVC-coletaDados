@@ -1,0 +1,23 @@
+objects/TAppDecCfg.d.o: \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/App/TAppDecoder/TAppDecCfg.cpp \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/App/TAppDecoder/TAppDecCfg.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TAppCommon/program_options_lite.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/TComChromaFormat.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/TComRectangle.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/ContextTables.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/TComRom.h \
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/Debug.h
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/App/TAppDecoder/TAppDecCfg.cpp :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/App/TAppDecoder/TAppDecCfg.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TAppCommon/program_options_lite.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/TComChromaFormat.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/TComRectangle.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/ContextTables.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/TComRom.h :
+ /home/hiik/Projeto/coletaDados/build/linux/app/TAppDecoder/../../../../source/Lib/TLibCommon/Debug.h :

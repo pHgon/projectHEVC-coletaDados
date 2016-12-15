@@ -1,0 +1,11 @@
+objects/ContextModel.r.o: \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/ContextModel.cpp \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/ContextModel.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.h
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/ContextModel.cpp :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/ContextModel.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibCommon/../../../../source/Lib/TLibCommon/TComRom.h :

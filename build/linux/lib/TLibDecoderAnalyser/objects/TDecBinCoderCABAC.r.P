@@ -1,0 +1,35 @@
+objects/TDecBinCoderCABAC.r.o: \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/TDecBinCoderCABAC.cpp \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/TDecBinCoderCABAC.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComCABACTables.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/TDecBinCoder.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextModel.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComBitStream.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComCodingStatistics.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComChromaFormat.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRectangle.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextTables.h \
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/TDecBinCoderCABAC.cpp :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/TDecBinCoderCABAC.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComCABACTables.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibDecoder/TDecBinCoder.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextModel.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRom.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComBitStream.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComCodingStatistics.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComChromaFormat.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/TComRectangle.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/ContextTables.h :
+ /home/hiik/Projeto/coletaDados/build/linux/lib/TLibDecoderAnalyser/../../../../source/Lib/TLibCommon/Debug.h :
