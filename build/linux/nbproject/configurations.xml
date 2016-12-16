@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="Lib"
+                   displayName="Lib"
+                   projectFiles="true"
+                   root="../../source/Lib">
+      <logicalFolder name="libmd5" displayName="libmd5" projectFiles="true">
+        <itemPath>../../source/Lib/libmd5/libmd5.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="TLibCommon" displayName="TLibCommon" projectFiles="true">
+        <itemPath>../../source/Lib/TLibCommon/CommonDef.h</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/ContextModel.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/ContextModel3DBuffer.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/Debug.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/SEI.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComBitStream.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComCABACTables.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComChromaFormat.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComDataCU.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComInterpolationFilter.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComLoopFilter.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComMotionInfo.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComPattern.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComPic.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComPicSym.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComPicYuv.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComPicYuvMD5.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComPrediction.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComRdCost.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComRom.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComSampleAdaptiveOffset.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComSampleAdaptiveOffset.h</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComSlice.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComTU.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComTrQuant.cpp</itemPath>
+        <itemPath>../../source/Lib/TLibCommon/TComYuv.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="TLibVideoIO" displayName="TLibVideoIO" projectFiles="true">
+        <itemPath>../../source/Lib/TLibVideoIO/TVideoIOYuv.cpp</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <df root="." name="0">
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Arquivos Importantes"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+      <itemPath>makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-fPIC"/>
+        <element flagsID="1" commonFlags="-fPIC -g"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f makefile</buildCommand>
+          <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <cTool>
+            <incDir>
+              <pElem>../../source/Lib</pElem>
+              <pElem>../../source/Lib/TLibCommon</pElem>
+              <pElem>lib/TLibCommon</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>MSYS_LINUX</Elem>
+              <Elem>_DEBUG</Elem>
+            </preprocessorList>
+          </cTool>
+          <ccTool>
+            <incDir>
+              <pElem>../../source/Lib</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>MSYS_LINUX</Elem>
+              <Elem>_DEBUG</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand></preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="../../source/Lib/TLibCommon/ContextModel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/ContextModel3DBuffer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/Debug.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/SEI.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComBitStream.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComCABACTables.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComChromaFormat.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComDataCU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComInterpolationFilter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComLoopFilter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComMotionInfo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComPattern.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComPic.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComPicSym.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComPicYuv.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComPicYuvMD5.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComPrediction.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComRdCost.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComRom.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComSampleAdaptiveOffset.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComSlice.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComTU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComTrQuant.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibCommon/TComYuv.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/TLibVideoIO/TVideoIOYuv.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../../source/Lib/libmd5/libmd5.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <folder path="Lib/TLibCommon">
+        <ccTool>
+          <incDir>
+            <pElem>../../source/Lib/TLibCommon</pElem>
+            <pElem>lib/TLibCommon</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="Lib/TLibVideoIO">
+        <ccTool>
+          <incDir>
+            <pElem>../../source/Lib/TLibVideoIO</pElem>
+            <pElem>lib/TLibVideoIO</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MSYS_UNIX_LARGEFILE</Elem>
+            <Elem>_FILE_OFFSET_BITS=64</Elem>
+            <Elem>_LARGEFILE64_SOURCE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+    </conf>
+  </confs>
+</configurationDescriptor>

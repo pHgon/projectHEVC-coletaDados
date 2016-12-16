@@ -45,6 +45,7 @@
 #include <limits>
 
 #include "ColetaDados.h"
+#include "TEncCfg.h"
 
 
 //! \ingroup TLibEncoder
@@ -4189,6 +4190,39 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     }
   }
 
+ #if COLETADADOS_H
+    
+  Int x = TEncCfg.getSourceWidth();
+  Int y = TEncCfg.getSourceHeight();
+  Int qp = TEncCfg::getQP();
+  fprintf(ColetaDados::getFile(), "%d x %d - %d\n", x,y,qp);
+  
+/*
+    else{
+        ColetaDados::setRefinement(0);
+    }
+    ColetaDados::getMv(3).set(cStruct.iBestX,cStruct.iBestY);
+    Int iRoiWidth, iRoiHeight;
+    UInt uiPartAddr;
+    Int iPartIdx=ColetaDados::getPartIndex();
+    pcCU->getPartIndexAndSize( iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight );
+    
+    fprintf(ColetaDados::getFile(),"Pr%d",pred);
+    fprintf(ColetaDados::getFile(),"FL%d",ColetaDados::getFirstLevel());
+    fprintf(ColetaDados::getFile(),"Ra%dMv%d,%d",ColetaDados::getRaster(),ColetaDados::getMv(2).getHor(),ColetaDados::getMv(2).getVer());
+    fprintf(ColetaDados::getFile(),"Re%d",ColetaDados::getRefinement());
+    if(ColetaDados::getIteration()!=0)
+        fprintf(ColetaDados::getFile(),"Max%dAv%dIt%d",ColetaDados::getMaxLevel(),(int)(ColetaDados::getTotalLevel()/ColetaDados::getIteration()),ColetaDados::getIteration());
+    else
+        fprintf(ColetaDados::getFile(),"Max%dAv0It%d",ColetaDados::getMaxLevel(),ColetaDados::getIteration());
+    fprintf(ColetaDados::getFile(),"S%d",ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY));
+    fprintf(ColetaDados::getFile(),"CCB%d",ColetaDados::getBlocosCalculados());
+    fprintf(ColetaDados::getFile(),"W%dH%d",iRoiWidth, iRoiHeight );
+    fprintf(ColetaDados::getFile(),"MV%d,%d",cStruct.iBestX, cStruct.iBestY);
+    fprintf(ColetaDados::getFile(),"X%dY%d\n",pcCU->getCUPelX(),pcCU->getCUPelY());
+ */
+#endif
+  
   // write out best match
   rcMv.set( cStruct.iBestX, cStruct.iBestY );
   ruiSAD = cStruct.uiBestSad - m_pcRdCost->getCostOfVectorWithPredictor( cStruct.iBestX, cStruct.iBestY );
