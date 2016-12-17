@@ -45,7 +45,6 @@
 #include <limits>
 
 #include "ColetaDados.h"
-#include "TEncCfg.h"
 
 
 //! \ingroup TLibEncoder
@@ -315,9 +314,9 @@ __inline Void TEncSearch::xTZSearchHelp( const TComPattern* const pcPatternKey, 
 {
   Distortion  uiSad = 0;
 
-#if COLETADADOS_H  
-  ColetaDados::incrementaBlocosCalculados();
-#endif
+//#if COLETADADOS_H  
+  //ColetaDados::incrementaBlocosCalculados();
+//#endif
 
   const Pel* const  piRefSrch = rcStruct.piRefY + iSearchY * rcStruct.iYStride + iSearchX;
 
@@ -4191,11 +4190,8 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   }
 
  #if COLETADADOS_H
-    
-  Int x = TEncCfg.getSourceWidth();
-  Int y = TEncCfg.getSourceHeight();
-  Int qp = TEncCfg::getQP();
-  fprintf(ColetaDados::getFile(), "%d x %d - %d\n", x,y,qp);
+
+  //fprintf(ColetaDados::getFile(), "%d x %d - %d\n", x,y,qp);
   
 /*
     else{

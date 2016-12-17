@@ -39,6 +39,16 @@
 #include "TEncSlice.h"
 #include <math.h>
 
+
+//...........................código vladimir................................
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "../../App/TAppEncoder/encmain.h"//minhas variáveis globais
+
+//...........................código vladimir............................
+
+
 //! \ingroup TLibEncoder
 //! \{
 

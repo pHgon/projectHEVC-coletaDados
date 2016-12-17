@@ -43,6 +43,14 @@
 
 #include <cmath>
 #include <algorithm>
+
+//...........................código vladimir................................
+
+#include <stdlib.h>
+#include "../../App/TAppEncoder/encmain.h"//minhas variáveis globais
+
+//...........................código vladimir................................
+
 using namespace std;
 
 
@@ -1069,6 +1077,28 @@ Void TEncCu::xEncodeCU( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth )
   const UInt uiRPelX   = uiLPelX + (maxCUWidth>>uiDepth)  - 1;
         UInt uiTPelY   = pcCU->getCUPelY() + g_auiRasterToPelY[ g_auiZscanToRaster[uiAbsPartIdx] ];
   const UInt uiBPelY   = uiTPelY + (maxCUHeight>>uiDepth) - 1;
+
+
+  //...........................código vladimir..............................................................................................
+
+  if ((codificacao==1)&&((int)pcCU->getDepth(uiAbsPartIdx)==uiDepth))
+  {// "xEncodeCU" sendo usado durante a codificação e não na compressão; o segundo teste evita duplicação de PUs durante a busca recursiva
+
+    if (pcCU->getSkipFlag(uiAbsPartIdx)==true)// se PU é modo Skip
+      matriz_skip[(int)pcCU->getPartitionSize(uiAbsPartIdx)][(int)pcCU->getDepth(uiAbsPartIdx)]++;// incrementa a matriz skip na posição adequada de acordo com a partição e a profundidade, matriz_skip = tipo_partição x profundidade 
+
+    else if ((int)pcCU->getPredictionMode(uiAbsPartIdx)==1)//se a PU é modo Intra
+      matriz_intra[(int)pcCU->getPartitionSize(uiAbsPartIdx)][(int)pcCU->getDepth(uiAbsPartIdx)]++;// incrementa a matriz Intra na posição adequada de acordo com a partição e a profundidade, matriz_intra = tipo_partição x profundidade
+
+    else if ((int)pcCU->getPredictionMode(uiAbsPartIdx)==0){//se a PU é modo Inter
+      matriz_inter[(int)pcCU->getPartitionSize(uiAbsPartIdx)][(int)pcCU->getDepth(uiAbsPartIdx)]++;// incrementa a matriz Inter na posição adequada de acordo com a partição e a profundidade, matriz_inter = tipo_partição x profundidade
+    //printf("%d\n",(int)pcCU->getPartitionSize(uiAbsPartIdx));
+    //getchar();
+    }
+  }  
+
+//...........................código vladimir.............................................................................................. 
+
 
   if( ( uiRPelX < sps.getPicWidthInLumaSamples() ) && ( uiBPelY < sps.getPicHeightInLumaSamples() ) )
   {

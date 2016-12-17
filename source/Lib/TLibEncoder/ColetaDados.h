@@ -47,6 +47,12 @@ public:
     static void setIteration();
     static void resetIteration();
     static int getIteration();
+    static void setTamWidth(int x);
+    static int getTamWidth();
+    static void setTamHeight(int x);
+    static int getTamHeight();
+    static void setQP(int x);
+    static int getQP();
 private:
     static int iBlocosCalculados;
     static int partIndex;
@@ -66,5 +72,8 @@ private:
     static int maxLevel;
     static int iteration;
     static int totalLevel;
+    
+    static int tamWidth;
+    static int tamHeight;
+    static int QP;
 };
-

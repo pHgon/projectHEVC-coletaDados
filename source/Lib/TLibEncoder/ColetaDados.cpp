@@ -26,6 +26,10 @@ int ColetaDados::maxLevel;
 int ColetaDados::iteration;
 int ColetaDados::totalLevel;
 
+int ColetaDados::tamWidth;
+int ColetaDados::tamHeight;
+int ColetaDados::QP;
+
 ColetaDados::ColetaDados() {
     refinement=0;
     raster=0;
@@ -45,6 +49,9 @@ ColetaDados::ColetaDados() {
     maxLevel=0;
     iteration=0;
     totalLevel=0;
+    tamWidth=0;
+    tamHeight=0;
+    QP=0;
 }
 int ColetaDados::getBlocosCalculados(){
     return iBlocosCalculados;
@@ -186,4 +193,25 @@ void ColetaDados::resetIteration(){
 }
 int ColetaDados::getIteration(){
     return iteration;
+}
+
+void ColetaDados::setTamWidth(int x){
+    tamWidth=x;
+}
+int ColetaDados::getTamWidth(){
+    return tamWidth;
+}
+
+void ColetaDados::setTamHeight(int x){
+    tamHeight=x;
+}
+int ColetaDados::getTamHeight(){
+    return tamHeight;
+}
+
+void ColetaDados::setQP(int x){
+    QP=x;
+}
+int ColetaDados::getQP(){
+    return QP;
 }
