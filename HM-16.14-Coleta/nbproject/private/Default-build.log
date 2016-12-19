@@ -1,0 +1,30 @@
+make -C lib/TLibVideoIO 	MM32=0
+make[1]: Entering directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibVideoIO'
+make[1]: Leaving directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibVideoIO'
+make -C lib/TLibCommon 	MM32=0
+make[1]: Entering directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon'
+make[1]: Leaving directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibCommon'
+make -C lib/TLibDecoder 	MM32=0
+make[1]: Entering directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibDecoder'
+make[1]: Leaving directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibDecoder'
+make -C lib/TLibEncoder 	MM32=0
+make[1]: Entering directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder'
+make[1]: Leaving directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder'
+make -C lib/TAppCommon       MM32=0
+make[1]: Entering directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TAppCommon'
+make[1]: Leaving directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TAppCommon'
+make -C app/TAppDecoder      MM32=0
+make[1]: Entering directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/app/TAppDecoder'
+make[1]: Leaving directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/app/TAppDecoder'
+make -C app/TAppEncoder      MM32=0
+make[1]: Entering directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/app/TAppEncoder'
+g++ -c -MMD -MF ./objects/TAppEncCfg.d.d -MT ./objects/TAppEncCfg.d.o -fPIC -DMSYS_LINUX -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DMSYS_UNIX_LARGEFILE -I/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/app/TAppEncoder/../../../../source/Lib -I../../../../source/App/TAppEncoder -Wall -Wshadow -Wno-sign-compare -Werror -g  -D_DEBUG -o objects/TAppEncCfg.d.o /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/app/TAppEncoder/../../../../source/App/TAppEncoder/TAppEncCfg.cpp
+g++ -o ../../../../bin/TAppEncoderStaticd -Wall  ./objects/encmain.d.o ./objects/TAppEncCfg.d.o ./objects/TAppEncTop.d.o -L../../../../lib  -ldl  -lpthread -lTLibEncoderStaticd -lTLibCommonStaticd -lTLibVideoIOStaticd -lTAppCommonStaticd
+./objects/TAppEncCfg.d.o: In function `TAppEncCfg::parseCfg(int, char**)':
+/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/app/TAppEncoder/../../../../source/App/TAppEncoder/TAppEncCfg.cpp:1576: undefined reference to `ColetaDados::setQP(int)'
+collect2: error: ld returned 1 exit status
+../../common/makefile.base:447: recipe for target '../../../../bin/TAppEncoderStaticd' failed
+make[1]: *** [../../../../bin/TAppEncoderStaticd] Error 1
+make[1]: Leaving directory '/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/app/TAppEncoder'
+makefile:7: recipe for target 'all' failed
+make: *** [all] Error 2

@@ -314,9 +314,9 @@ __inline Void TEncSearch::xTZSearchHelp( const TComPattern* const pcPatternKey, 
 {
   Distortion  uiSad = 0;
 
-//#if COLETADADOS_H  
-  //ColetaDados::incrementaBlocosCalculados();
-//#endif
+#if COLETADADOS_H  
+  ColetaDados::incrementaBlocosCalculados();
+#endif
 
   const Pel* const  piRefSrch = rcStruct.piRefY + iSearchY * rcStruct.iYStride + iSearchX;
 
@@ -3685,6 +3685,8 @@ Void TEncSearch::xMotionEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPa
   Double        fWeight       = 1.0;
 
   pcCU->getPartIndexAndSize( iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight );
+  
+  ColetaDados::salvaPartIndex(iPartIdx);
 
   if ( bBi ) // Bipredictive ME
   {
@@ -4190,9 +4192,14 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   }
 
  #if COLETADADOS_H
-
-  //fprintf(ColetaDados::getFile(), "%d x %d - %d\n", x,y,qp);
+  Int iRoiWidth, iRoiHeight;
+  UInt uiPartAddr;
+  Int iPartIdx=ColetaDados::getPartIndex();
+  pcCU->getPartIndexAndSize(iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight);
   
+  
+    fprintf(ColetaDados::getFile(), "%d %d %d ", ColetaDados::getTamWidth(), ColetaDados::getTamHeight(), ColetaDados::getQP());
+    fprintf(ColetaDados::getFile(), "%d %d %d\n", iRoiWidth, iRoiHeight, iPartIdx);
 /*
     else{
         ColetaDados::setRefinement(0);

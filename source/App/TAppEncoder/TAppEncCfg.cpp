@@ -46,6 +46,7 @@
 #include "TAppCommon/program_options_lite.h"
 #include "TLibEncoder/TEncRateCtrl.h"
 #include "TLibEncoder/ColetaDados.h"
+//#include "../../Lib/TLibEncoder/ColetaDados.h"
 #ifdef WIN32
 #define strdup _strdup
 #endif
@@ -1572,7 +1573,9 @@ Bool TAppEncCfg::parseCfg( Int argc, TChar* argv[] )
   
 #if COLETADADOS_H
     ColetaDados::iniciaArquivo(m_inputFileName,m_fQP);
-    ColetaDados::setQP(m_fQP);
+    ColetaDados::setTamWidth((int)m_iSourceWidth);
+    ColetaDados::setTamHeight((int)m_iSourceHeight);
+    ColetaDados::setQP(m_iQP);
 #endif
 
   return true;
