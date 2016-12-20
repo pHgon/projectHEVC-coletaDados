@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
-    <df root="../source/App" name="1">
+    <df root="../source/App" name="0">
       <df name="TAppDecoder">
       </df>
       <df name="TAppEncoder">
       </df>
       <df name="utils">
         <df name="BitrateTargeting">
+          <in>ExtractBitrates.cpp</in>
+          <in>ExtractBitrates.h</in>
+          <in>ExtractBitratesMain.cpp</in>
+          <in>GuessLambdaModifiers.cpp</in>
+          <in>GuessLambdaModifiers.h</in>
+          <in>GuessLambdaModifiersMain.cpp</in>
+          <in>RuntimeError.h</in>
         </df>
       </df>
     </df>
-    <df root="../source/Lib" name="2">
+    <df root="../source/Lib" name="1">
       <df name="libmd5">
       </df>
       <df name="TAppCommon">

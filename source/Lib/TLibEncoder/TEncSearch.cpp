@@ -3938,6 +3938,11 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   cStruct.iYStride    = iRefStride;
   cStruct.piRefY      = piRefY;
   cStruct.uiBestSad   = MAX_UINT;
+  
+#if COLETADADOS_H
+  ColetaDados::resetBlocosCalculados();
+  ColetaDados::getPredMv(0)=rcMv;  // Median
+#endif
 
   // set rcMv (Median predictor) as start point and as best point
   xTZSearchHelp( pcPatternKey, cStruct, rcMv.getHor(), rcMv.getVer(), 0, 0 );
@@ -4006,12 +4011,26 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     iSrchRngHorRight  = cMvSrchRngRB.getHor();
     iSrchRngVerTop    = cMvSrchRngLT.getVer();
     iSrchRngVerBottom = cMvSrchRngRB.getVer();
-  }
+    }
+  
+#if COLETADADOS_H
+  if(pIntegerMv2Nx2NPred==0)
+    ColetaDados::getPredMv(1)=*(new TComMv(0,0)); // Integer Mv
+  else    
+    ColetaDados::getPredMv(1)=*pIntegerMv2Nx2NPred; // Integer Mv
+  
+  ColetaDados::getMv(0).set(cStruct.iBestX,cStruct.iBestY);  // Predictor Mv
+  int pred = ColetaDados::getPred(cStruct.iBestX,cStruct.iBestY);
+#endif
 
   // start search
   Int  iDist = 0;
   Int  iStartX = cStruct.iBestX;
   Int  iStartY = cStruct.iBestY;
+  
+#if COLETADADOS_H
+    ColetaDados::resetFirstLevel();
+#endif
 
   const Bool bBestCandidateZero = (cStruct.iBestX == 0) && (cStruct.iBestY == 0);
 
@@ -4027,12 +4046,20 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     {
       xTZ8PointSquareSearch  ( pcPatternKey, cStruct, pcMvSrchRngLT, pcMvSrchRngRB, iStartX, iStartY, iDist );
     }
+    
+    #if COLETADADOS_H
+        ColetaDados::setFirstLevel();
+    #endif
 
     if ( bFirstSearchStop && ( cStruct.uiBestRound >= uiFirstSearchRounds ) ) // stop criterion
     {
       break;
     }
   }
+  
+  #if COLETADADOS_H
+    ColetaDados::getMv(1).set(cStruct.iBestX,cStruct.iBestY);  // First Search Mv
+  #endif
 
   if (!bNewZeroNeighbourhoodTest)
   {
@@ -4110,6 +4137,10 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   {
     if ( bEnableRasterSearch && ( ((Int)(cStruct.uiBestDistance) > iRaster) || bAlwaysRasterSearch ) )
     {
+#if COLETADADOS_H
+        ColetaDados::setRaster(1);
+#endif
+        
       cStruct.uiBestDistance = iRaster;
       for ( iStartY = iSrchRngVerTop; iStartY <= iSrchRngVerBottom; iStartY += iRaster )
       {
@@ -4119,7 +4150,15 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
         }
       }
     }
+#if COLETADADOS_H
+    else{
+        ColetaDados::setRaster(0);
+    }
+    ColetaDados::getMv(2).set(cStruct.iBestX,cStruct.iBestY);  // Raster Mv
+#endif
   }
+    
+
 
   // raster refinement
 
@@ -4154,17 +4193,34 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     }
   }
 
+#if COLETADADOS_H
+    ColetaDados::resetRefinementLevel();
+    ColetaDados::resetIteration();
+    ColetaDados::resetTotalLevel();
+    ColetaDados::setMaxLevel(0);
+#endif
+    
   // star refinement
   if ( bStarRefinementEnable && cStruct.uiBestDistance > 0 )
   {
+#if COLETADADOS_H
+    ColetaDados::setRefinement(1);
+#endif
     while ( cStruct.uiBestDistance > 0 )
     {
       iStartX = cStruct.iBestX;
       iStartY = cStruct.iBestY;
       cStruct.uiBestDistance = 0;
       cStruct.ucPointNr = 0;
+#if COLETADADOS_H
+      ColetaDados::setIteration();
+      ColetaDados::resetRefinementLevel();
+#endif
       for ( iDist = 1; iDist < (Int)uiSearchRange + 1; iDist*=2 )
       {
+#if COLETADADOS_H
+        ColetaDados::setRefinementLevel();
+#endif
         if ( bStarRefinementDiamond == 1 )
         {
           xTZ8PointDiamondSearch ( pcPatternKey, cStruct, pcMvSrchRngLT, pcMvSrchRngRB, iStartX, iStartY, iDist, bStarRefinementCornersForDiamondDist1 );
@@ -4178,6 +4234,11 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
           break;
         }
       }
+        
+#if COLETADADOS_H
+        ColetaDados::setTotalLevel(ColetaDados::getRefinementLevel());
+        ColetaDados::setMaxLevel(max(ColetaDados::getMaxLevel(),ColetaDados::getRefinementLevel()));
+#endif
 
       // calculate only 2 missing points instead 8 points if cStrukt.uiBestDistance == 1
       if ( cStruct.uiBestDistance == 1 )
@@ -4191,7 +4252,12 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     }
   }
 
- #if COLETADADOS_H
+#if COLETADADOS_H
+  else{
+      ColetaDados::setRefinement(0);
+  }
+  ColetaDados::getMv(3).set(cStruct.iBestX,cStruct.iBestY); // Refinament Mv
+  
   Int iRoiWidth, iRoiHeight;
   UInt uiPartAddr;
   Int iPartIdx=ColetaDados::getPartIndex();
@@ -4199,8 +4265,24 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   
   
     fprintf(ColetaDados::getFile(), "%d %d %d ", ColetaDados::getTamWidth(), ColetaDados::getTamHeight(), ColetaDados::getQP());
-    fprintf(ColetaDados::getFile(), "%d %d %d\n", iRoiWidth, iRoiHeight, iPartIdx);
-/*
+    fprintf(ColetaDados::getFile(), "%2.d %2.d %d ", iRoiWidth, iRoiHeight, pred);
+    switch(ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY)){
+        case 0:
+            fprintf(ColetaDados::getFile(), "1 0 0 0 ");
+            break;
+        case 1:
+            fprintf(ColetaDados::getFile(), "0 1 0 0 ");
+            break;
+        case 2:
+            fprintf(ColetaDados::getFile(), "0 0 1 0 ");
+            break;
+        case 3:
+            fprintf(ColetaDados::getFile(), "0 0 0 1 ");
+            break;
+    }
+    fprintf(ColetaDados::getFile(), "\n");
+    
+    /*  
     else{
         ColetaDados::setRefinement(0);
     }
