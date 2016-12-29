@@ -202,6 +202,12 @@ Void TEncSearch::destroy()
 
   m_tmpYuvPred.destroy();
   m_isInitialized = false;
+#if COLETADADOS_H
+  fprintf(ColetaDados::getFile(), "                                                                                   # %2.2f %% | %2.2f %% | %2.2f %% | %2.2f %% | %2.2f %% | 100,0 %% |",
+           ((float)ColetaDados::getNumPred()/(float)ColetaDados::getNumTotal())*100, ((float)ColetaDados::getNumFirst()/(float)ColetaDados::getNumTotal())*100, 
+           ((float)ColetaDados::getNumRaster()/(float)ColetaDados::getNumTotal())*100, ((float)ColetaDados::getNumRefixFirst()/(float)ColetaDados::getNumTotal())*100, 
+           ((float)ColetaDados::getNumRefixRaster()/(float)ColetaDados::getNumTotal())*100);
+#endif
 }
 
 TEncSearch::~TEncSearch()
@@ -4106,6 +4112,10 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     cStruct.uiBestDistance = 0;
     xTZ2PointSearch( pcPatternKey, cStruct, pcMvSrchRngLT, pcMvSrchRngRB );
   }
+    
+#if COLETADADOS_H
+    ColetaDados::setFirstSAD(cStruct.uiBestSad);
+#endif
 
   // raster search if distance is too big
   if (bUseAdaptiveRaster)
@@ -4115,7 +4125,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     Int   iSrchRngRasterRight  = iSrchRngHorRight;
     Int   iSrchRngRasterTop    = iSrchRngVerTop;
     Int   iSrchRngRasterBottom = iSrchRngVerBottom;
-
+    
     if (!(bEnableRasterSearch && ( ((Int)(cStruct.uiBestDistance) > iRaster))))
     {
       iWindowSize ++;
@@ -4127,7 +4137,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     cStruct.uiBestDistance = iWindowSize;
     for ( iStartY = iSrchRngRasterTop; iStartY <= iSrchRngRasterBottom; iStartY += iWindowSize )
     {
-      for ( iStartX = iSrchRngRasterLeft; iStartX <= iSrchRngRasterRight; iStartX += iWindowSize )
+      for ( iStartX = iSrchRngRasterLeft; iStartX <= iSrchRngRasterRight; iStartX += iWindowSize )  
       {
         xTZSearchHelp( pcPatternKey, cStruct, iStartX, iStartY, 0, iWindowSize );
       }
@@ -4135,8 +4145,13 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   }
   else
   {
+#if COLETADADOS_H
+      ColetaDados::setBestDistance((Int) cStruct.uiBestDistance);
+#endif 
+      
     if ( bEnableRasterSearch && ( ((Int)(cStruct.uiBestDistance) > iRaster) || bAlwaysRasterSearch ) )
     {
+        
 #if COLETADADOS_H
         ColetaDados::setRaster(1);
 #endif
@@ -4266,8 +4281,8 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   pcCU->getPartIndexAndSize(iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight);
   
   
-    fprintf(ColetaDados::getFile(), "%d %d %d ", ColetaDados::getTamWidth(), ColetaDados::getTamHeight(), ColetaDados::getQP());
-    fprintf(ColetaDados::getFile(), "%2.d %2.d %d ", iRoiWidth, iRoiHeight, pred);
+    fprintf(ColetaDados::getFile(), "%7d %d ", ColetaDados::getTamWidth() * ColetaDados::getTamHeight(), ColetaDados::getQP());
+    fprintf(ColetaDados::getFile(), "%4d %d   ", iRoiWidth * iRoiHeight, pred);
     switch(ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY)){
         case 0:
             ColetaDados::incrementaNumPred();
@@ -4295,8 +4310,10 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(1).getHor(), ColetaDados::getMv(1).getVer());
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(2).getHor(), ColetaDados::getMv(2).getVer());
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(3).getHor(), ColetaDados::getMv(3).getVer());
-    fprintf(ColetaDados::getFile(), "     %d | %d | %d | %d | %d | %d", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());
-    fprintf(ColetaDados::getFile(), "\n");
+    fprintf(ColetaDados::getFile(), "%5u ", ColetaDados::getFirstSAD());
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::getBestDistance());
+    fprintf(ColetaDados::getFile(), "     # %7.d - | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
+            ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());
     
     /*  
     else{

@@ -64,6 +64,10 @@ public:
     static void incrementaNumRefixRaster ();
     static int getNumRefixRaster ();
     static int getNumTotal ();
+    static void setFirstSAD(unsigned int x);
+    static unsigned int getFirstSAD();
+    static void setBestDistance(int x);
+    static int getBestDistance();
 private:
     static int iBlocosCalculados;
     static int partIndex;
@@ -92,4 +96,6 @@ private:
     static int numRaster;
     static int numRefixFirst;
     static int numRefixRaster;
+    static unsigned int firstSAD;
+    static int bestDistance;
 };

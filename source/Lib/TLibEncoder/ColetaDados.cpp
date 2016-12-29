@@ -34,6 +34,8 @@ int ColetaDados::numFirst;
 int ColetaDados::numRaster;
 int ColetaDados::numRefixFirst;
 int ColetaDados::numRefixRaster;
+unsigned int ColetaDados::firstSAD;
+int ColetaDados::bestDistance;
 
 ColetaDados::ColetaDados() {
     refinement=0;
@@ -62,6 +64,8 @@ ColetaDados::ColetaDados() {
     numRaster=0;
     numRefixFirst=0;
     numRefixRaster=0;
+    firstSAD=0;
+    bestDistance=0;
 }
 int ColetaDados::getBlocosCalculados(){
     return iBlocosCalculados;
@@ -259,4 +263,19 @@ int ColetaDados::getNumRefixRaster (){
 
 int ColetaDados::getNumTotal(){
     return (numPred+numFirst+numRaster+numRefixFirst+numRefixRaster);
+}
+
+void ColetaDados::setFirstSAD(unsigned int x){
+    firstSAD = x;
+}
+
+unsigned int ColetaDados::getFirstSAD(){
+    return firstSAD;
+}
+
+void ColetaDados::setBestDistance(int x){
+    bestDistance = x;
+}
+int ColetaDados::getBestDistance(){
+    return bestDistance;
 }

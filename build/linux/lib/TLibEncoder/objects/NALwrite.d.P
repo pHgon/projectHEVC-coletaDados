@@ -1,15 +1,15 @@
 objects/NALwrite.d.o: \
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.cpp \
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/NAL.h \
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h \
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h \
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComBitStream.h \
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.h \
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.cpp :
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/NAL.h :
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h :
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComBitStream.h :
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.h :
- /home/hiik/Git-Repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.cpp \
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/NAL.h \
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h \
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h \
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComBitStream.h \
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.h \
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.cpp :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/NAL.h :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TypeDef.h :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComBitStream.h :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.h :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/CommonDef.h :
