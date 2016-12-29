@@ -4253,6 +4253,8 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   }
 
 #if COLETADADOS_H
+    
+//-------------------------------------------------- Código Paulo H ---------------------------------------------------------------------
   else{
       ColetaDados::setRefinement(0);
   }
@@ -4268,18 +4270,32 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     fprintf(ColetaDados::getFile(), "%2.d %2.d %d ", iRoiWidth, iRoiHeight, pred);
     switch(ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY)){
         case 0:
+            ColetaDados::incrementaNumPred();
             fprintf(ColetaDados::getFile(), "1 0 0 0 ");
             break;
         case 1:
+            ColetaDados::incrementaNumFirst();
             fprintf(ColetaDados::getFile(), "0 1 0 0 ");
             break;
         case 2:
+            ColetaDados::incrementaNumRaster();
             fprintf(ColetaDados::getFile(), "0 0 1 0 ");
             break;
         case 3:
+            if(ColetaDados::getRaster()==1){
+                ColetaDados::incrementaNumRefixRaster();
+            }
+            else{
+                ColetaDados::incrementaNumRefixFirst();
+            }
             fprintf(ColetaDados::getFile(), "0 0 0 1 ");
             break;
     }
+    fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(0).getHor(), ColetaDados::getMv(0).getVer());
+    fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(1).getHor(), ColetaDados::getMv(1).getVer());
+    fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(2).getHor(), ColetaDados::getMv(2).getVer());
+    fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(3).getHor(), ColetaDados::getMv(3).getVer());
+    fprintf(ColetaDados::getFile(), "     %d | %d | %d | %d | %d | %d", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());
     fprintf(ColetaDados::getFile(), "\n");
     
     /*  

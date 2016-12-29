@@ -305,7 +305,7 @@
       <item path="../source/Lib/TAppCommon/program_options_lite.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
         </ccTool>
       </item>
@@ -572,7 +572,7 @@
       <item path="../source/Lib/TLibEncoder/ColetaDados.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
         </ccTool>
       </item>
@@ -649,21 +649,21 @@
       <item path="../source/Lib/TLibEncoder/TEncPic.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncPreanalyzer.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncRateCtrl.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
         </ccTool>
       </item>
@@ -691,21 +691,21 @@
       <item path="../source/Lib/TLibEncoder/TEncSlice.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncTop.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/WeightPredAnalysis.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
         </ccTool>
       </item>

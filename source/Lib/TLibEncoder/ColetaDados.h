@@ -53,6 +53,17 @@ public:
     static int getTamHeight();
     static void setQP(int x);
     static int getQP();
+    static void incrementaNumPred ();
+    static int getNumPred ();
+    static void incrementaNumFirst ();
+    static int getNumFirst ();
+    static void incrementaNumRaster ();
+    static int getNumRaster ();
+    static void incrementaNumRefixFirst ();
+    static int getNumRefixFirst ();
+    static void incrementaNumRefixRaster ();
+    static int getNumRefixRaster ();
+    static int getNumTotal ();
 private:
     static int iBlocosCalculados;
     static int partIndex;
@@ -76,4 +87,9 @@ private:
     static int tamWidth;
     static int tamHeight;
     static int QP;
+    static int numPred;
+    static int numFirst;
+    static int numRaster;
+    static int numRefixFirst;
+    static int numRefixRaster;
 };

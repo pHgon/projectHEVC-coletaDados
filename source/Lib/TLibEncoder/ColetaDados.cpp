@@ -29,6 +29,11 @@ int ColetaDados::totalLevel;
 int ColetaDados::tamWidth;
 int ColetaDados::tamHeight;
 int ColetaDados::QP;
+int ColetaDados::numPred;
+int ColetaDados::numFirst;
+int ColetaDados::numRaster;
+int ColetaDados::numRefixFirst;
+int ColetaDados::numRefixRaster;
 
 ColetaDados::ColetaDados() {
     refinement=0;
@@ -52,6 +57,11 @@ ColetaDados::ColetaDados() {
     tamWidth=0;
     tamHeight=0;
     QP=0;
+    numPred=0;
+    numFirst=0;
+    numRaster=0;
+    numRefixFirst=0;
+    numRefixRaster=0;
 }
 int ColetaDados::getBlocosCalculados(){
     return iBlocosCalculados;
@@ -214,4 +224,39 @@ void ColetaDados::setQP(int x){
 }
 int ColetaDados::getQP(){
     return QP;
+}
+
+void ColetaDados::incrementaNumPred (){
+    numPred++;
+}
+int ColetaDados::getNumPred (){
+    return numPred;
+}
+void ColetaDados::incrementaNumFirst (){
+    numFirst++;
+}
+int ColetaDados::getNumFirst (){
+    return numFirst;
+}
+void ColetaDados::incrementaNumRaster (){
+    numRaster++;
+}
+int ColetaDados::getNumRaster (){
+    return numRaster;
+}
+void ColetaDados::incrementaNumRefixFirst (){
+    numRefixFirst++;
+}
+int ColetaDados::getNumRefixFirst (){
+    return numRefixFirst;
+}
+void ColetaDados::incrementaNumRefixRaster (){
+    numRefixRaster++;
+}
+int ColetaDados::getNumRefixRaster (){
+    return numRefixRaster;
+}
+
+int ColetaDados::getNumTotal(){
+    return (numPred+numFirst+numRaster+numRefixFirst+numRefixRaster);
 }
