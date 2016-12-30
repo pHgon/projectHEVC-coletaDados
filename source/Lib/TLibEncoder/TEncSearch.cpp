@@ -203,7 +203,8 @@ Void TEncSearch::destroy()
   m_tmpYuvPred.destroy();
   m_isInitialized = false;
 #if COLETADADOS_H
-  fprintf(ColetaDados::getFile(), "                                                                                   # %2.2f %% | %2.2f %% | %2.2f %% | %2.2f %% | %2.2f %% | 100,0 %% |",
+  fprintf(ColetaDados::getFile(), "\n#Distribuição de escolha de melhores MV\n#Predição:              %5.2f  (%%)\n#First Search:          %5.2f  (%%)"
+          "\n#Raster:                %5.2f  (%%)\n#Refinamento s/ Raster: %5.2f  (%%)\n#Refinamento c/ Raster: %5.2f  (%%)",
            ((float)ColetaDados::getNumPred()/(float)ColetaDados::getNumTotal())*100, ((float)ColetaDados::getNumFirst()/(float)ColetaDados::getNumTotal())*100, 
            ((float)ColetaDados::getNumRaster()/(float)ColetaDados::getNumTotal())*100, ((float)ColetaDados::getNumRefixFirst()/(float)ColetaDados::getNumTotal())*100, 
            ((float)ColetaDados::getNumRefixRaster()/(float)ColetaDados::getNumTotal())*100);
@@ -4026,7 +4027,9 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     ColetaDados::getPredMv(1)=*pIntegerMv2Nx2NPred; // Integer Mv
   
   ColetaDados::getMv(0).set(cStruct.iBestX,cStruct.iBestY);  // Predictor Mv
+  ColetaDados::setPredictorSAD(cStruct.uiBestSad);
   int pred = ColetaDados::getPred(cStruct.iBestX,cStruct.iBestY);
+  ColetaDados::setRdCostPred(m_pcRdCost->getCostOfVectorWithPredictor( cStruct.iBestX, cStruct.iBestY ));
 #endif
 
   // start search
@@ -4065,6 +4068,8 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   
   #if COLETADADOS_H
     ColetaDados::getMv(1).set(cStruct.iBestX,cStruct.iBestY);  // First Search Mv
+    ColetaDados::setFirstSAD(cStruct.uiBestSad);
+    ColetaDados::setRdCostFirst(m_pcRdCost->getCostOfVectorWithPredictor( cStruct.iBestX, cStruct.iBestY ));
   #endif
 
   if (!bNewZeroNeighbourhoodTest)
@@ -4113,10 +4118,6 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     xTZ2PointSearch( pcPatternKey, cStruct, pcMvSrchRngLT, pcMvSrchRngRB );
   }
     
-#if COLETADADOS_H
-    ColetaDados::setFirstSAD(cStruct.uiBestSad);
-#endif
-
   // raster search if distance is too big
   if (bUseAdaptiveRaster)
   {
@@ -4170,6 +4171,8 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
         ColetaDados::setRaster(0);
     }
     ColetaDados::getMv(2).set(cStruct.iBestX,cStruct.iBestY);  // Raster Mv
+    ColetaDados::setRasterSAD(cStruct.uiBestSad);
+    ColetaDados::setRdCostRaster(m_pcRdCost->getCostOfVectorWithPredictor( cStruct.iBestX, cStruct.iBestY ));
 #endif
   }
     
@@ -4268,7 +4271,6 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   }
 
 #if COLETADADOS_H
-    
 //-------------------------------------------------- Código Paulo H ---------------------------------------------------------------------
   else{
       ColetaDados::setRefinement(0);
@@ -4310,14 +4312,17 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(1).getHor(), ColetaDados::getMv(1).getVer());
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(2).getHor(), ColetaDados::getMv(2).getVer());
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(3).getHor(), ColetaDados::getMv(3).getVer());
+    fprintf(ColetaDados::getFile(), "%5u ", ColetaDados::getPredictorSAD());
     fprintf(ColetaDados::getFile(), "%5u ", ColetaDados::getFirstSAD());
+    fprintf(ColetaDados::getFile(), "%5u ", ColetaDados::getRasterSAD());
     fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::getBestDistance());
-    fprintf(ColetaDados::getFile(), "     # %7.d - | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
+    fprintf(ColetaDados::getFile(), "%3u %3u %3u ", ColetaDados::getRdCostPred(), ColetaDados::getRdCostFirst(), ColetaDados::getRdCostRaster());
+    fprintf(ColetaDados::getFile(), "       # %7.d | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
             ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());
     
     /*  
     else{
-        ColetaDados::setRefinement(0);
+        ColetaDados::s  etRefinement(0);
     }
     ColetaDados::getMv(3).set(cStruct.iBestX,cStruct.iBestY);
     Int iRoiWidth, iRoiHeight;

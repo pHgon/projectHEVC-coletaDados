@@ -64,10 +64,20 @@ public:
     static void incrementaNumRefixRaster ();
     static int getNumRefixRaster ();
     static int getNumTotal ();
+    static void setPredictorSAD(unsigned int x);
+    static unsigned int getPredictorSAD();
     static void setFirstSAD(unsigned int x);
     static unsigned int getFirstSAD();
+    static void setRasterSAD(unsigned int x);
+    static unsigned int getRasterSAD();
     static void setBestDistance(int x);
     static int getBestDistance();
+    static unsigned int getRdCostPred();
+    static void setRdCostPred(unsigned int x);
+    static unsigned int getRdCostFirst();
+    static void setRdCostFirst(unsigned int x);
+    static unsigned int getRdCostRaster();
+    static void setRdCostRaster(unsigned int x);
 private:
     static int iBlocosCalculados;
     static int partIndex;
@@ -96,6 +106,11 @@ private:
     static int numRaster;
     static int numRefixFirst;
     static int numRefixRaster;
+    static unsigned int predictorSAD;
     static unsigned int firstSAD;
+    static unsigned int rasterSAD;
     static int bestDistance;
+    static unsigned int RdCostPred;
+    static unsigned int RdCostFirst;
+    static unsigned int RdCostRaster;
 };

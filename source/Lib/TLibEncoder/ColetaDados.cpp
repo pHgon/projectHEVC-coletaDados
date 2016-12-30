@@ -34,8 +34,13 @@ int ColetaDados::numFirst;
 int ColetaDados::numRaster;
 int ColetaDados::numRefixFirst;
 int ColetaDados::numRefixRaster;
+unsigned int ColetaDados::predictorSAD;
 unsigned int ColetaDados::firstSAD;
+unsigned int ColetaDados::rasterSAD;
 int ColetaDados::bestDistance;
+unsigned int ColetaDados::RdCostPred;
+unsigned int ColetaDados::RdCostFirst;
+unsigned int ColetaDados::RdCostRaster;
 
 ColetaDados::ColetaDados() {
     refinement=0;
@@ -64,8 +69,13 @@ ColetaDados::ColetaDados() {
     numRaster=0;
     numRefixFirst=0;
     numRefixRaster=0;
+    predictorSAD=0;
     firstSAD=0;
+    rasterSAD=0;
     bestDistance=0;
+    RdCostPred=0;
+    RdCostFirst=0;
+    RdCostRaster=0;
 }
 int ColetaDados::getBlocosCalculados(){
     return iBlocosCalculados;
@@ -265,6 +275,14 @@ int ColetaDados::getNumTotal(){
     return (numPred+numFirst+numRaster+numRefixFirst+numRefixRaster);
 }
 
+void ColetaDados::setPredictorSAD(unsigned int x){
+    predictorSAD = x;
+}
+
+unsigned int ColetaDados::getPredictorSAD(){
+    return predictorSAD;
+}
+
 void ColetaDados::setFirstSAD(unsigned int x){
     firstSAD = x;
 }
@@ -273,9 +291,41 @@ unsigned int ColetaDados::getFirstSAD(){
     return firstSAD;
 }
 
+void ColetaDados::setRasterSAD(unsigned int x){
+    rasterSAD = x;
+}
+
+unsigned int ColetaDados::getRasterSAD(){
+    return rasterSAD;
+}
+
 void ColetaDados::setBestDistance(int x){
     bestDistance = x;
 }
 int ColetaDados::getBestDistance(){
     return bestDistance;
+}
+
+void ColetaDados::setRdCostPred(unsigned int x){
+    RdCostPred = x;
+}
+
+unsigned int ColetaDados::getRdCostPred(){
+    return RdCostPred;
+}
+
+void ColetaDados::setRdCostFirst(unsigned int x){
+    RdCostFirst = x;
+}
+
+unsigned int ColetaDados::getRdCostFirst(){
+    return RdCostFirst;
+}
+
+void ColetaDados::setRdCostRaster(unsigned int x){
+    RdCostRaster = x;
+}
+
+unsigned int ColetaDados::getRdCostRaster(){
+    return RdCostRaster;
 }
