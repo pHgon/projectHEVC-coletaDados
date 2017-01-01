@@ -3948,7 +3948,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   
 #if COLETADADOS_H
   ColetaDados::resetBlocosCalculados();
-  ColetaDados::getPredMv(0)=rcMv;  // Median
+  ColetaDados::getPredMv(0)=rcMv;
 #endif
 
   // set rcMv (Median predictor) as start point and as best point
