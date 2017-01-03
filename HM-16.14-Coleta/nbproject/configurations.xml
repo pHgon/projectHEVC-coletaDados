@@ -723,7 +723,7 @@
       <item path="../source/Lib/TLibEncoder/TEncSearch.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="4">
         <ccTool flags="0">
           <preprocessorList>
             <Elem>_DEBUG</Elem>

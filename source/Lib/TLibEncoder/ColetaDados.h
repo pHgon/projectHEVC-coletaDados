@@ -78,6 +78,9 @@ public:
     static void setRdCostFirst(unsigned int x);
     static unsigned int getRdCostRaster();
     static void setRdCostRaster(unsigned int x);
+    static int calcDistEuclidiana(int x, int y);
+    static int calcDistCityBlock(int x, int y);
+    static int calcDistChessboard(int x, int y);
 private:
     static int iBlocosCalculados;
     static int partIndex;

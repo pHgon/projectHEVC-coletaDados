@@ -5,6 +5,8 @@
  * Created on 24 de Agosto de 2015, 16:08
  */
 
+#include <cmath>
+
 #include "ColetaDados.h"
 
 int ColetaDados::iBlocosCalculados;
@@ -328,4 +330,21 @@ void ColetaDados::setRdCostRaster(unsigned int x){
 
 unsigned int ColetaDados::getRdCostRaster(){
     return RdCostRaster;
+}
+
+int ColetaDados::calcDistEuclidiana(int x, int y){
+    return (int)sqrt(pow((double)x,2)+pow((double)y,2));
+}
+
+int ColetaDados::calcDistCityBlock(int x, int y){
+    return abs(x)+abs(y);
+}
+
+int ColetaDados::calcDistChessboard(int x, int y){
+    int a=abs(x);
+    int b=abs(y);
+    if (b>a)
+        return b;
+    else
+        return a;
 }

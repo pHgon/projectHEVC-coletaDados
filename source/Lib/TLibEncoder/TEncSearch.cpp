@@ -4312,17 +4312,30 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(1).getHor(), ColetaDados::getMv(1).getVer());
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(2).getHor(), ColetaDados::getMv(2).getVer());
     fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(3).getHor(), ColetaDados::getMv(3).getVer());
-    fprintf(ColetaDados::getFile(), "%5u ", ColetaDados::getPredictorSAD());
-    fprintf(ColetaDados::getFile(), "%5u ", ColetaDados::getFirstSAD());
-    fprintf(ColetaDados::getFile(), "%5u ", ColetaDados::getRasterSAD());
-    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::getBestDistance());
-    fprintf(ColetaDados::getFile(), "%3u %3u %3u ", ColetaDados::getRdCostPred(), ColetaDados::getRdCostFirst(), ColetaDados::getRdCostRaster());
-    fprintf(ColetaDados::getFile(), "       # %7.d | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
-            ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());
+    
+    fprintf(ColetaDados::getFile(), "  %6u ", ColetaDados::getPredictorSAD());
+    fprintf(ColetaDados::getFile(), "%6u ", ColetaDados::getFirstSAD());
+    fprintf(ColetaDados::getFile(), "%6u ", ColetaDados::getRasterSAD());
+    
+    fprintf(ColetaDados::getFile(), "  %3d ", ColetaDados::calcDistEuclidiana(ColetaDados::getMv(0).getHor(), ColetaDados::getMv(0).getVer()));
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::calcDistCityBlock(ColetaDados::getMv(0).getHor(), ColetaDados::getMv(0).getVer()));
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::calcDistChessboard(ColetaDados::getMv(0).getHor(), ColetaDados::getMv(0).getVer()));
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::calcDistEuclidiana(ColetaDados::getMv(1).getHor(), ColetaDados::getMv(1).getVer()));
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::calcDistCityBlock(ColetaDados::getMv(1).getHor(), ColetaDados::getMv(1).getVer()));
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::calcDistChessboard(ColetaDados::getMv(1).getHor(), ColetaDados::getMv(1).getVer()));
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::calcDistEuclidiana(ColetaDados::getMv(2).getHor(), ColetaDados::getMv(2).getVer()));
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::calcDistCityBlock(ColetaDados::getMv(2).getHor(), ColetaDados::getMv(2).getVer()));
+    fprintf(ColetaDados::getFile(), "%3d ", ColetaDados::calcDistChessboard(ColetaDados::getMv(2).getHor(), ColetaDados::getMv(2).getVer()));
+    
+    fprintf(ColetaDados::getFile(), " %3d ", ColetaDados::getBestDistance());
+    fprintf(ColetaDados::getFile(), " %3u %3u %3u ", ColetaDados::getRdCostPred(), ColetaDados::getRdCostFirst(), ColetaDados::getRdCostRaster());
+    fprintf(ColetaDados::getFile(), "\n"); 
+    //fprintf(ColetaDados::getFile(), "       # %7.d | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
+    //        ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());
     
     /*  
     else{
-        ColetaDados::s  etRefinement(0);
+        ColetaDados::setRefinement(0);
     }
     ColetaDados::getMv(3).set(cStruct.iBestX,cStruct.iBestY);
     Int iRoiWidth, iRoiHeight;
