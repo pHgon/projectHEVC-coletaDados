@@ -3878,7 +3878,7 @@ Void TEncSearch::xPatternSearchFast( const TComDataCU* const  pcCU,
   pcCU->getMvPredAbove      ( m_acMvPredictors[MD_ABOVE] );
   assert (MD_ABOVE_RIGHT < NUM_MV_PREDICTORS);
   pcCU->getMvPredAboveRight ( m_acMvPredictors[MD_ABOVE_RIGHT] );
-
+  
   switch ( m_motionEstimationSearchMethod )
   {
     case MESEARCH_DIAMOND:
@@ -4329,6 +4329,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     
     fprintf(ColetaDados::getFile(), " %3d ", ColetaDados::getBestDistance());
     fprintf(ColetaDados::getFile(), " %3u %3u %3u ", ColetaDados::getRdCostPred(), ColetaDados::getRdCostFirst(), ColetaDados::getRdCostRaster());
+    
     fprintf(ColetaDados::getFile(), "\n"); 
     //fprintf(ColetaDados::getFile(), "       # %7.d | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
     //        ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());

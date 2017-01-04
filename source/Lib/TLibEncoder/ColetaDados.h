@@ -116,4 +116,5 @@ private:
     static unsigned int RdCostPred;
     static unsigned int RdCostFirst;
     static unsigned int RdCostRaster;
+    
 };
