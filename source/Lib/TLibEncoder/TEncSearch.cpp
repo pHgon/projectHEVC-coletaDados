@@ -4176,8 +4176,6 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
 #endif
   }
     
-
-
   // raster refinement
 
   if ( bRasterRefinementEnable && cStruct.uiBestDistance > 0 )
@@ -4329,6 +4327,9 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     
     fprintf(ColetaDados::getFile(), " %3d ", ColetaDados::getBestDistance());
     fprintf(ColetaDados::getFile(), " %3u %3u %3u ", ColetaDados::getRdCostPred(), ColetaDados::getRdCostFirst(), ColetaDados::getRdCostRaster());
+    fprintf(ColetaDados::getFile(), " %d ", ColetaDados::getPred(ColetaDados::getMv(0).getHor(), ColetaDados::getMv(0).getVer()));
+    fprintf(ColetaDados::getFile(), " %d ", ColetaDados::getFirstLevel());
+    fprintf(ColetaDados::getFile(),"   |  %d,%d  ", pcCU->getCUPelX(), pcCU->getCUPelY());
     
     fprintf(ColetaDados::getFile(), "\n"); 
     //fprintf(ColetaDados::getFile(), "       # %7.d | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
