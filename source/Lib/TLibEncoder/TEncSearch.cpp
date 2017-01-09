@@ -3950,7 +3950,17 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   ColetaDados::resetBlocosCalculados();
   ColetaDados::getPredMv(0)=rcMv;
 #endif
-
+  
+  /*RADC
+  Pel * pointer = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu())
+  
+  for  i 0 --> height -1
+          for j = 0: wid-1
+                  access = pointer[j]
+          pointer = pointer +  pcCU->getPic()->getStride(COMPONENT_Y);
+                 
+  END RADC*/
+          
   // set rcMv (Median predictor) as start point and as best point
   xTZSearchHelp( pcPatternKey, cStruct, rcMv.getHor(), rcMv.getVer(), 0, 0 );
 
@@ -4029,8 +4039,10 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   ColetaDados::getMv(0).set(cStruct.iBestX,cStruct.iBestY);  // Predictor Mv
   ColetaDados::setPredictorSAD(cStruct.uiBestSad);
   int pred = ColetaDados::getPred(cStruct.iBestX,cStruct.iBestY);
-  ColetaDados::setRdCostPred(m_pcRdCost->getCostOfVectorWithPredictor( cStruct.iBestX, cStruct.iBestY ));
+  ColetaDados::setRdCostPred(m_pcRdCost->getCostOfVectorWithPredictor( cStruct.iBestX, cStruct.iBestY ));  
 #endif
+  
+  
 
   // start search
   Int  iDist = 0;
@@ -4280,7 +4292,13 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   Int iPartIdx=ColetaDados::getPartIndex();
   pcCU->getPartIndexAndSize(iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight);
   
+  UInt partIdx;
+  TComMv mv0;
+  const TComDataCU* pcPU = pcCU->getPULeft(partIdx, pcCU -> getZorderIdxInCtu()+iPartIdx);
+  pcPU->clipMv(mv0);
+  printf("\n%d - %d", mv0.getHor(), mv0.getVer());
   
+      
     fprintf(ColetaDados::getFile(), "%7d %d ", ColetaDados::getTamWidth() * ColetaDados::getTamHeight(), ColetaDados::getQP());
     fprintf(ColetaDados::getFile(), "%4d %d   ", iRoiWidth * iRoiHeight, pred);
     switch(ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY)){
