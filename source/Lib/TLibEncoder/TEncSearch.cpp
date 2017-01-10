@@ -43,6 +43,7 @@
 #include "TLibCommon/Debug.h"
 #include <math.h>
 #include <limits>
+#include <cmath>
 
 #include "ColetaDados.h"
 
@@ -2130,6 +2131,9 @@ TEncSearch::xRecurIntraChromaCodingQT(TComYuv*    pcOrgYuv,
       }
     }
   }
+#if COLETADADOS_H
+  ColetaDados::setPartIdxTU(rTu.GetAbsPartIdxTU());
+#endif
 }
 
 
@@ -3951,16 +3955,6 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   ColetaDados::getPredMv(0)=rcMv;
 #endif
   
-  /*RADC
-  Pel * pointer = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu())
-  
-  for  i 0 --> height -1
-          for j = 0: wid-1
-                  access = pointer[j]
-          pointer = pointer +  pcCU->getPic()->getStride(COMPONENT_Y);
-                 
-  END RADC*/
-          
   // set rcMv (Median predictor) as start point and as best point
   xTZSearchHelp( pcPatternKey, cStruct, rcMv.getHor(), rcMv.getVer(), 0, 0 );
 
@@ -4292,11 +4286,11 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   Int iPartIdx=ColetaDados::getPartIndex();
   pcCU->getPartIndexAndSize(iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight);
   
-  UInt partIdx;
+  /*UInt partIdx;
   TComMv mv0;
-  const TComDataCU* pcPU = pcCU->getPULeft(partIdx, pcCU -> getZorderIdxInCtu()+iPartIdx);
+  const TComDataCU* pcPU = pcCU->getPULeft(partIdx, pcCU -> getZorderIdxInCtu());
   pcPU->clipMv(mv0);
-  printf("\n%d - %d", mv0.getHor(), mv0.getVer());
+  printf("\n%d - %d", mv0.getHor(), mv0.getVer());*/
   
       
     fprintf(ColetaDados::getFile(), "%7d %d ", ColetaDados::getTamWidth() * ColetaDados::getTamHeight(), ColetaDados::getQP());
@@ -4348,6 +4342,28 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     fprintf(ColetaDados::getFile(), " %d ", ColetaDados::getPred(ColetaDados::getMv(0).getHor(), ColetaDados::getMv(0).getVer()));
     fprintf(ColetaDados::getFile(), " %d ", ColetaDados::getFirstLevel());
     fprintf(ColetaDados::getFile(),"   |  %d,%d  ", pcCU->getCUPelX(), pcCU->getCUPelY());
+    
+    Pel* pixelPointerY  = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
+    Pel* pixelPointerCb = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
+    Pel* pixelPointerCr = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cr, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
+    for(int i=0; i< iRoiHeight -1; i++){
+        for(int j=0; j< iRoiWidth -1; j++){
+            printf("%d - %d - %d\n", pixelPointerY[j], pixelPointerCb[j], pixelPointerCr[j]);
+            pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);
+            pixelPointerCb += pcCU->getPic()->getStride(COMPONENT_Cb);
+            pixelPointerCr += pcCU->getPic()->getStride(COMPONENT_Cr);
+        }
+    }
+   
+    /*RADC
+  Pel * pointer = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu())
+  
+  for  i 0 --> height -1
+          for j = 0: wid-1
+                  access = pointer[j]
+          pointer = pointer +  pcCU->getPic()->getStride(COMPONENT_Y);
+                 
+  END RADC*/
     
     fprintf(ColetaDados::getFile(), "\n"); 
     //fprintf(ColetaDados::getFile(), "       # %7.d | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 

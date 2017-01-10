@@ -43,6 +43,7 @@ int ColetaDados::bestDistance;
 unsigned int ColetaDados::RdCostPred;
 unsigned int ColetaDados::RdCostFirst;
 unsigned int ColetaDados::RdCostRaster;
+unsigned int ColetaDados::partIdxTU;
 
 ColetaDados::ColetaDados() {
     refinement=0;
@@ -78,6 +79,7 @@ ColetaDados::ColetaDados() {
     RdCostPred=0;
     RdCostFirst=0;
     RdCostRaster=0;
+    partIdxTU=0;
 }
 int ColetaDados::getBlocosCalculados(){
     return iBlocosCalculados;
@@ -347,4 +349,12 @@ int ColetaDados::calcDistChessboard(int x, int y){
         return b;
     else
         return a;
+}
+
+unsigned int ColetaDados::getPartIdxTU(){
+    return partIdxTU;
+}
+
+void ColetaDados::setPartIdxTU(unsigned int x){
+    partIdxTU = x;
 }

@@ -81,6 +81,8 @@ public:
     static int calcDistEuclidiana(int x, int y);
     static int calcDistCityBlock(int x, int y);
     static int calcDistChessboard(int x, int y);
+    static unsigned int getPartIdxTU();
+    static void setPartIdxTU(unsigned int x);
 private:
     static int iBlocosCalculados;
     static int partIndex;
@@ -116,5 +118,6 @@ private:
     static unsigned int RdCostPred;
     static unsigned int RdCostFirst;
     static unsigned int RdCostRaster;
+    static unsigned int partIdxTU;
     
 };
