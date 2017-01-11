@@ -204,8 +204,7 @@
       </toolsSet>
       <flagsDictionary>
         <element flagsID="0" commonFlags="-fPIC"/>
-        <element flagsID="1" commonFlags="-fPIC -O3"/>
-        <element flagsID="2" commonFlags="-fPIC -g"/>
+        <element flagsID="1" commonFlags="-fPIC -g"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -214,7 +213,7 @@
           <buildCommandWorkingDir>../build/linux</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f makefile -j 4</buildCommand>
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>../bin/TAppEncoderStaticd</executablePath>
           <cTool>
             <incDir>
               <pElem>../source/Lib</pElem>
@@ -232,6 +231,7 @@
             </incDir>
             <preprocessorList>
               <Elem>MSYS_LINUX</Elem>
+              <Elem>_DEBUG</Elem>
             </preprocessorList>
           </ccTool>
         </makeTool>
@@ -573,112 +573,112 @@
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/NALwrite.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/SEIEncoder.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/SEIwrite.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/SyntaxElementWriter.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncBinCoderCABAC.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncBinCoderCABACCounter.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncCavlc.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncCu.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncEntropy.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncGOP.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncPic.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncPreanalyzer.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncRateCtrl.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncSampleAdaptiveOffset.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncSbac.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncSearch.cpp"
@@ -686,30 +686,27 @@
             tool="1"
             flavor2="4">
         <ccTool flags="0">
-          <preprocessorList>
-            <Elem>_DEBUG</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncSlice.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncTop.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/WeightPredAnalysis.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibVideoIO/TVideoIOYuv.cpp"
@@ -720,14 +717,13 @@
         </ccTool>
       </item>
       <item path="../source/Lib/libmd5/libmd5.c" ex="false" tool="0" flavor2="2">
-        <cTool flags="2">
+        <cTool flags="1">
         </cTool>
       </item>
       <folder path="source/App">
         <ccTool>
           <preprocessorList>
             <Elem>MSYS_UNIX_LARGEFILE</Elem>
-            <Elem>_DEBUG</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
             <Elem>_LARGEFILE64_SOURCE</Elem>
           </preprocessorList>
@@ -765,9 +761,6 @@
             <pElem>../source/Lib/TAppCommon</pElem>
             <pElem>../build/linux/lib/TAppCommon</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>_DEBUG</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="source/Lib/TLibCommon">
@@ -776,19 +769,16 @@
             <pElem>../source/Lib/TLibCommon</pElem>
             <pElem>../build/linux/lib/TLibCommon</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>_DEBUG</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="source/Lib/TLibDecoder">
         <ccTool>
           <incDir>
             <pElem>../source/Lib/TLibDecoder</pElem>
-            <pElem>../build/linux/lib/TLibDecoder</pElem>
+            <pElem>../build/linux/lib/TLibDecoderAnalyser</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>_DEBUG</Elem>
+            <Elem>RExt__DECODER_DEBUG_BIT_STATISTICS=1</Elem>
           </preprocessorList>
         </ccTool>
       </folder>
@@ -808,7 +798,6 @@
           </incDir>
           <preprocessorList>
             <Elem>MSYS_UNIX_LARGEFILE</Elem>
-            <Elem>_DEBUG</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
             <Elem>_LARGEFILE64_SOURCE</Elem>
           </preprocessorList>
