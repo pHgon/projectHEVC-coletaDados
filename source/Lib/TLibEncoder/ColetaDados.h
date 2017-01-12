@@ -83,6 +83,8 @@ public:
     static int calcDistChessboard(int x, int y);
     static unsigned int getPartIdxTU();
     static void setPartIdxTU(unsigned int x);
+    static void incrementaNumPUs(void);
+    static unsigned int getNumPUs(void);
 private:
     static int iBlocosCalculados;
     static int partIndex;
@@ -119,5 +121,6 @@ private:
     static unsigned int RdCostFirst;
     static unsigned int RdCostRaster;
     static unsigned int partIdxTU;
+    static unsigned int numPUs;
     
 };

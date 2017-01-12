@@ -775,11 +775,8 @@
         <ccTool>
           <incDir>
             <pElem>../source/Lib/TLibDecoder</pElem>
-            <pElem>../build/linux/lib/TLibDecoderAnalyser</pElem>
+            <pElem>../build/linux/lib/TLibDecoder</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>RExt__DECODER_DEBUG_BIT_STATISTICS=1</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
       <folder path="source/Lib/TLibEncoder">

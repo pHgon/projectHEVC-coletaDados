@@ -209,6 +209,7 @@ Void TEncSearch::destroy()
            ((float)ColetaDados::getNumPred()/(float)ColetaDados::getNumTotal())*100, ((float)ColetaDados::getNumFirst()/(float)ColetaDados::getNumTotal())*100, 
            ((float)ColetaDados::getNumRaster()/(float)ColetaDados::getNumTotal())*100, ((float)ColetaDados::getNumRefixFirst()/(float)ColetaDados::getNumTotal())*100, 
            ((float)ColetaDados::getNumRefixRaster()/(float)ColetaDados::getNumTotal())*100);
+   fprintf(ColetaDados::getFile(),"\n%u", ColetaDados::getNumPUs());
 #endif
 }
 
@@ -4273,7 +4274,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
       }
     }
   }
-
+    
 #if COLETADADOS_H
 //-------------------------------------------------- Código Paulo H ---------------------------------------------------------------------
   else{
@@ -4281,6 +4282,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   }
   ColetaDados::getMv(3).set(cStruct.iBestX,cStruct.iBestY); // Refinament Mv
   
+  if (ColetaDados::getPartIdxTU() <4){
   Int iRoiWidth, iRoiHeight;
   UInt uiPartAddr;
   Int iPartIdx=ColetaDados::getPartIndex();
@@ -4300,7 +4302,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   
       
     fprintf(ColetaDados::getFile(), "%7d %d ", ColetaDados::getTamWidth() * ColetaDados::getTamHeight(), ColetaDados::getQP());
-    fprintf(ColetaDados::getFile(), "  %2d-%2d  %2d-%2d  %d   ", iRoiWidth, iRoiHeight, (int)pcCU->getWidth(0),(int)pcCU->getHeight(0), pred);
+    fprintf(ColetaDados::getFile(), "  %2d-%2d  %2d-%2d  %u %d", iRoiWidth, iRoiHeight, (int)pcCU->getWidth(0),(int)pcCU->getHeight(0), ColetaDados::getPartIdxTU(),  pred);
     switch(ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY)){
         case 0:
             ColetaDados::incrementaNumPred();
@@ -4389,6 +4391,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
     fprintf(ColetaDados::getFile(),"X%dY%d\n",pcCU->getCUPelX(),pcCU->getCUPelY());
  */
 #endif
+    }
   
   // write out best match
   rcMv.set( cStruct.iBestX, cStruct.iBestY );

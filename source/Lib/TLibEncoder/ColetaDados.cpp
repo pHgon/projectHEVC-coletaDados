@@ -44,6 +44,7 @@ unsigned int ColetaDados::RdCostPred;
 unsigned int ColetaDados::RdCostFirst;
 unsigned int ColetaDados::RdCostRaster;
 unsigned int ColetaDados::partIdxTU;
+unsigned int ColetaDados::numPUs;
 
 ColetaDados::ColetaDados() {
     refinement=0;
@@ -80,6 +81,7 @@ ColetaDados::ColetaDados() {
     RdCostFirst=0;
     RdCostRaster=0;
     partIdxTU=0;
+    numPUs=0;
 }
 int ColetaDados::getBlocosCalculados(){
     return iBlocosCalculados;
@@ -357,4 +359,11 @@ unsigned int ColetaDados::getPartIdxTU(){
 
 void ColetaDados::setPartIdxTU(unsigned int x){
     partIdxTU = x;
+}
+
+void ColetaDados::incrementaNumPUs(void){
+    numPUs++;
+}
+unsigned int ColetaDados::getNumPUs(void){
+    return numPUs;
 }

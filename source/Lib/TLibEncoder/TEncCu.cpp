@@ -1448,6 +1448,31 @@ Void TEncCu::xCheckRDCostInter( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, 
 {
   DEBUG_STRING_NEW(sTest)
 
+#if COLETADADOS_H
+  
+  UChar iRoiWidth, iRoiHeight;
+  
+  iRoiHeight = rpcBestCU->getHeight(0);
+  iRoiWidth  = rpcBestCU->getWidth(0);
+  
+  printf("%d-%d ", (int) iRoiWidth, (int) iRoiHeight);
+  ColetaDados::setPartIdxTU(ePartSize);
+  
+  ColetaDados::incrementaNumPUs();
+  
+//    Pel* pixelPointerY  = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y,  rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
+//    Pel* pixelPointerCb = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
+//    Pel* pixelPointerCr = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cr, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
+//    
+//    for(int i=0; i< rpcBestCU->get -1; i++){
+//        for(int j=0; j< iRoiWidth -1; j++){
+//            pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);
+//            pixelPointerCb += pcCU->getPic()->getStride(COMPONENT_Cb);
+//            pixelPointerCr += pcCU->getPic()->getStride(COMPONENT_Cr);
+//        }
+//    }
+#endif
+          
   if(getFastDeltaQp())
   {
     const TComSPS &sps=*(rpcTempCU->getSlice()->getSPS());
@@ -1556,28 +1581,6 @@ Void TEncCu::xCheckRDCostIntra( TComDataCU *&rpcBestCU,
 
   xCheckBestMode(rpcBestCU, rpcTempCU, uiDepth DEBUG_STRING_PASS_INTO(sDebug) DEBUG_STRING_PASS_INTO(sTest));
  
-#if COLETADADOS_H
-  
-//  UChar iRoiWidth, iRoiHeight;
-//  
-//  iRoiHeight = rpcBestCU->getHeight(0);
-//  iRoiWidth  = rpcBestCU->getWidth(0);
-//  
-//  printf("%d-%d ", (int) iRoiWidth, (int) iRoiHeight);
-  
-//    Pel* pixelPointerY  = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y,  rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
-//    Pel* pixelPointerCb = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
-//    Pel* pixelPointerCr = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cr, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
-//    
-//    for(int i=0; i< rpcBestCU->get -1; i++){
-//        for(int j=0; j< iRoiWidth -1; j++){
-//            pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);
-//            pixelPointerCb += pcCU->getPic()->getStride(COMPONENT_Cb);
-//            pixelPointerCr += pcCU->getPic()->getStride(COMPONENT_Cr);
-//        }
-//    }
-#endif
-    
 }
 
 
