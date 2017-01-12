@@ -85,6 +85,13 @@ public:
     static void setPartIdxTU(unsigned int x);
     static void incrementaNumPUs(void);
     static unsigned int getNumPUs(void);
+    static unsigned int getPartSize();
+    static void setPartSize(unsigned int x);
+    static void setVectorYuv(unsigned int x, unsigned int cod);
+    static void closeVectorYuv(void);
+    static void incrementaVectorIndex(void);
+    static void resetVectorIndex(void);
+    static unsigned int ix, jx, xx;
 private:
     static int iBlocosCalculados;
     static int partIndex;
@@ -122,5 +129,11 @@ private:
     static unsigned int RdCostRaster;
     static unsigned int partIdxTU;
     static unsigned int numPUs;
+    static unsigned int partSize;
+    static unsigned int vectorY [4097];
+    static unsigned int vectorCb[4097];
+    static unsigned int vectorCr[4097];
+    static unsigned int vectorIndex;
+    
     
 };

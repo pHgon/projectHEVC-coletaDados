@@ -45,7 +45,14 @@ unsigned int ColetaDados::RdCostFirst;
 unsigned int ColetaDados::RdCostRaster;
 unsigned int ColetaDados::partIdxTU;
 unsigned int ColetaDados::numPUs;
-
+unsigned int ColetaDados::partSize;
+unsigned int ColetaDados::vectorY [4097];
+unsigned int ColetaDados::vectorCb[4097];
+unsigned int ColetaDados::vectorCr[4097];
+unsigned int ColetaDados::vectorIndex;
+unsigned int ColetaDados::ix;
+unsigned int ColetaDados::jx;
+unsigned int ColetaDados::xx;
 ColetaDados::ColetaDados() {
     refinement=0;
     raster=0;
@@ -82,6 +89,11 @@ ColetaDados::ColetaDados() {
     RdCostRaster=0;
     partIdxTU=0;
     numPUs=0;
+    partSize=0;
+    vectorIndex=0;
+    ix = 0;
+    jx = 0;
+    xx=0;
 }
 int ColetaDados::getBlocosCalculados(){
     return iBlocosCalculados;
@@ -366,4 +378,40 @@ void ColetaDados::incrementaNumPUs(void){
 }
 unsigned int ColetaDados::getNumPUs(void){
     return numPUs;
+}
+
+unsigned int ColetaDados::getPartSize(){
+    return partSize;
+}
+
+void ColetaDados::setPartSize(unsigned int x){
+    partSize = x;
+}
+
+void ColetaDados::setVectorYuv(unsigned int x, unsigned int cod){
+    switch (cod){
+        case 0:
+            vectorY[vectorIndex] = x;
+            break;
+        case 1:
+            vectorCb[vectorIndex] = x;
+            break;
+        case 2:
+            vectorCr[vectorIndex] = x;
+            break;
+    }
+}
+
+void ColetaDados::closeVectorYuv(){
+    vectorY[vectorIndex]  = -1;
+    vectorCb[vectorIndex] = -1;
+    vectorCr[vectorIndex] = -1;
+}
+
+void ColetaDados::incrementaVectorIndex(){
+    vectorIndex++;
+}
+
+void ColetaDados::resetVectorIndex(){
+    vectorIndex=0;
 }

@@ -209,7 +209,7 @@ Void TEncSearch::destroy()
            ((float)ColetaDados::getNumPred()/(float)ColetaDados::getNumTotal())*100, ((float)ColetaDados::getNumFirst()/(float)ColetaDados::getNumTotal())*100, 
            ((float)ColetaDados::getNumRaster()/(float)ColetaDados::getNumTotal())*100, ((float)ColetaDados::getNumRefixFirst()/(float)ColetaDados::getNumTotal())*100, 
            ((float)ColetaDados::getNumRefixRaster()/(float)ColetaDados::getNumTotal())*100);
-   fprintf(ColetaDados::getFile(),"\n%u", ColetaDados::getNumPUs());
+   fprintf(ColetaDados::getFile(),"\n%u  %d", ColetaDados::getNumPUs(), ColetaDados::xx);
 #endif
 }
 
@@ -4282,7 +4282,11 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   }
   ColetaDados::getMv(3).set(cStruct.iBestX,cStruct.iBestY); // Refinament Mv
   
-  if (ColetaDados::getPartIdxTU() <4){
+  if (ColetaDados::getPartSize() <4){
+       printf("%d\n ", ColetaDados::jx);
+        ColetaDados::jx++;
+    
+
   Int iRoiWidth, iRoiHeight;
   UInt uiPartAddr;
   Int iPartIdx=ColetaDados::getPartIndex();
@@ -4302,7 +4306,9 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
   
       
     fprintf(ColetaDados::getFile(), "%7d %d ", ColetaDados::getTamWidth() * ColetaDados::getTamHeight(), ColetaDados::getQP());
-    fprintf(ColetaDados::getFile(), "  %2d-%2d  %2d-%2d  %u %d", iRoiWidth, iRoiHeight, (int)pcCU->getWidth(0),(int)pcCU->getHeight(0), ColetaDados::getPartIdxTU(),  pred);
+    fprintf(ColetaDados::getFile(), "   %2d - %2d  %2d - %2d   %u    %d  ", iRoiWidth, iRoiHeight, (int)pcCU->getWidth(0),(int)pcCU->getHeight(0), ColetaDados::getPartSize(),  pred);
+    if (iRoiWidth == iRoiHeight)
+        ColetaDados::xx++;
     switch(ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY)){
         case 0:
             ColetaDados::incrementaNumPred();
