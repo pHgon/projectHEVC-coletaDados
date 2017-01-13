@@ -700,10 +700,7 @@
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="0">
-          <preprocessorList>
-            <Elem>_DEBUG</Elem>
-          </preprocessorList>
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncSlice.cpp"

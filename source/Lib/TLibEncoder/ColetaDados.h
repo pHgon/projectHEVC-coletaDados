@@ -91,7 +91,10 @@ public:
     static void closeVectorYuv(void);
     static void incrementaVectorIndex(void);
     static void resetVectorIndex(void);
-    static unsigned int ix, jx, xx;
+    static void calculaMediaBloco (int cod);
+    static int getMedia (int cod);
+    static int getVariancia (int cod);
+   
 private:
     static int iBlocosCalculados;
     static int partIndex;
@@ -134,6 +137,12 @@ private:
     static unsigned int vectorCb[4097];
     static unsigned int vectorCr[4097];
     static unsigned int vectorIndex;
-    
-    
+    static double mediaBlocoY;
+    static double mediaBlocoCb;
+    static double mediaBlocoCr;
+    static double varianciaBlocoY;
+    static double varianciaBlocoCb;
+    static double varianciaBlocoCr;
+  
+    static void calculaMediaVetor (unsigned int *pointerVector, double *pointerMedia, double *pointerVariancia, unsigned int index);
 };
