@@ -573,59 +573,77 @@
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="0">
-          <preprocessorList>
-            <Elem>_DEBUG</Elem>
-          </preprocessorList>
+        <ccTool flags="1">
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/NALwrite.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/SEIEncoder.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/SEIwrite.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/SyntaxElementWriter.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncBinCoderCABAC.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncBinCoderCABACCounter.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncCavlc.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncCu.cpp"
@@ -642,14 +660,20 @@
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncGOP.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncPic.cpp"
@@ -686,28 +710,40 @@
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncSbac.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncSearch.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncSlice.cpp"
             ex="false"
             tool="1"
             flavor2="4">
-        <ccTool flags="1">
+        <ccTool flags="0">
+          <preprocessorList>
+            <Elem>_DEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="../source/Lib/TLibEncoder/TEncTop.cpp"
@@ -803,10 +839,9 @@
         <ccTool>
           <incDir>
             <pElem>../source/Lib/TLibDecoder</pElem>
-            <pElem>../build/linux/lib/TLibDecoderAnalyser</pElem>
+            <pElem>../build/linux/lib/TLibDecoder</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>RExt__DECODER_DEBUG_BIT_STATISTICS=1</Elem>
             <Elem>_DEBUG</Elem>
           </preprocessorList>
         </ccTool>

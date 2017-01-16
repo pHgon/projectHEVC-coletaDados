@@ -3285,6 +3285,31 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
         if (pcCU->getPartitionSize(0) != SIZE_2Nx2N || pcCU->getDepth(0) != 0) {
             pIntegerMv2Nx2NPred = &(m_integerMv2Nx2N[eRefPicList][iRefIdxPred]);
         }
+#if COLETADADOS_H
+        Pel* pixelPointerY = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
+        Pel* pixelPointerCb = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
+        Pel* pixelPointerCr = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cr, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
+
+        for (int i = 0; i < iRoiHeight - 1; i++) {
+            for (int j = 0; j < iRoiWidth - 1; j++) {
+                ColetaDados::setVectorYuv(pixelPointerY[j], 0);
+                ColetaDados::setVectorYuv(pixelPointerCb[j], 1);
+                ColetaDados::setVectorYuv(pixelPointerCr[j], 2);
+                ColetaDados::incrementaVectorIndex();
+            }
+            pixelPointerY += pcCU->getPic()->getStride(COMPONENT_Y);
+            pixelPointerCb += pcCU->getPic()->getStride(COMPONENT_Cb);
+            pixelPointerCr += pcCU->getPic()->getStride(COMPONENT_Cr);
+        }
+        
+//        UInt uPartIdx;
+//        const TComDataCU* pcPU = pcCU->getPUAbove(uPartIdx, pcCU->getZorderIdxInCtu());
+//        uPartIdx = pcPU->getZorderIdxInCtu();
+//        TComMv mv0;
+//        pcPU->clipMv(mv0);
+//        printf("%d %d\n", mv0.getHor(), mv0.getVer());
+        
+#endif
         xPatternSearchFast(pcCU, pcPatternKey, piRefY, iRefStride, &cMvSrchRngLT, &cMvSrchRngRB, rcMv, ruiCost, pIntegerMv2Nx2NPred);
         if (pcCU->getPartitionSize(0) == SIZE_2Nx2N) {
             m_integerMv2Nx2N[eRefPicList][iRefIdxPred] = rcMv;
@@ -3759,18 +3784,6 @@ Void TEncSearch::xTZSearch(const TComDataCU * const pcCU,
         Int iPartIdx = ColetaDados::getPartIndex();
         pcCU->getPartIndexAndSize(iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight);
 
-        //   UInt partIdx = 0;
-        //  TComMv mv0;
-        //  UInt zorder = pcCU -> getZorderIdxInCtu();
-        //  printf("%d, %d ", partIdx, zorder);
-        //  const TComDataCU* pcPU;
-        //  pcPU = pcCU->getPULeft(partIdx, zorder);
-        //  printf("%d, %d \n", partIdx, zorder);
-        //  UInt aux = pcPU->get;
-        //  printf("%d", aux);
-        //  //pcPU->clipMv(mv0);
-        //  //printf("\n%d - %d", mv0.getHor(), mv0.getVer());
-
 
         fprintf(ColetaDados::getFile(), "%7d %d ", ColetaDados::getTamWidth() * ColetaDados::getTamHeight(), ColetaDados::getQP());
         fprintf(ColetaDados::getFile(), "  %2d %2d  %d  ", iRoiWidth, iRoiHeight, pred);
@@ -3826,7 +3839,7 @@ Void TEncSearch::xTZSearch(const TComDataCU * const pcCU,
         fprintf(ColetaDados::getFile(), "   %d %d , %d %d , %d %d  ", ColetaDados::getMedia(0), ColetaDados::getVariancia(0), ColetaDados::getMedia(1), 
                                                                  ColetaDados::getVariancia(1), ColetaDados::getMedia(2), ColetaDados::getVariancia(2));
         ColetaDados::resetVectorIndex();
-
+        
         fprintf(ColetaDados::getFile(), "\n");
         //fprintf(ColetaDados::getFile(), "       # %7.d | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
         //        ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());
@@ -3855,8 +3868,9 @@ Void TEncSearch::xTZSearch(const TComDataCU * const pcCU,
         fprintf(ColetaDados::getFile(),"MV%d,%d",cStruct.iBestX, cStruct.iBestY);
         fprintf(ColetaDados::getFile(),"X%dY%d\n",pcCU->getCUPelX(),pcCU->getCUPelY());
          */
-#endif
     }
+#endif
+    
 
     // write out best match
     rcMv.set(cStruct.iBestX, cStruct.iBestY);

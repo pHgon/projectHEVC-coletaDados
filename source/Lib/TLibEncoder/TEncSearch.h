@@ -121,7 +121,7 @@ protected:
 public:
   TEncSearch();
   virtual ~TEncSearch();
-
+  
   Void init(TEncCfg*       pcEncCfg,
             TComTrQuant*   pcTrQuant,
             Int            iSearchRange,

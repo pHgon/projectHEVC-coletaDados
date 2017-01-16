@@ -94,6 +94,7 @@ public:
     static void calculaMediaBloco (int cod);
     static int getMedia (int cod);
     static int getVariancia (int cod);
+    static int xx, yy;
    
 private:
     static int iBlocosCalculados;

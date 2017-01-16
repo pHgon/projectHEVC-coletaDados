@@ -1285,46 +1285,45 @@ Void TEncCu::xCheckRDCostInter(TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, P
     DEBUG_STRING_NEW(sTest)
 
 #if COLETADADOS_H
-            ColetaDados::incrementaNumPUs();
+//            ColetaDados::incrementaNumPUs();
     ColetaDados::setPartSize(ePartSize);
-
-    if (ePartSize < 4) {
-        UChar iRoiWidth, iRoiHeight;
-
-        iRoiHeight = rpcBestCU->getHeight(0);
-        iRoiWidth = rpcBestCU->getWidth(0);
-        switch (ePartSize) {
-            case 1:
-                iRoiHeight /= 2;
-                break;
-            case 2:
-                iRoiWidth /= 2;
-                break;
-            case 3:
-                iRoiHeight /= 2;
-                iRoiWidth /= 2;
-                break;
-            default:
-                break;
-        }
-        Pel* pixelPointerY = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
-        Pel* pixelPointerCb = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
-        Pel* pixelPointerCr = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cr, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
-
-        for (int i = 0; i < iRoiHeight - 1; i++) {
-            for (int j = 0; j < iRoiWidth - 1; j++) {
-                ColetaDados::setVectorYuv(pixelPointerY[j], 0);
-                ColetaDados::setVectorYuv(pixelPointerCb[j], 1);
-                ColetaDados::setVectorYuv(pixelPointerCr[j], 2);
-                ColetaDados::incrementaVectorIndex();
-            }
-            pixelPointerY += rpcBestCU->getPic()->getStride(COMPONENT_Y);
-            pixelPointerCb += rpcBestCU->getPic()->getStride(COMPONENT_Cb);
-            pixelPointerCr += rpcBestCU->getPic()->getStride(COMPONENT_Cr);
-        }
-        ColetaDados::closeVectorYuv();
-    }
-
+//
+//    if (ePartSize < 4) {
+//        UChar iRoiWidth, iRoiHeight;
+//
+//        iRoiHeight = rpcBestCU->getHeight(0);
+//        iRoiWidth = rpcBestCU->getWidth(0);
+//        switch (ePartSize) {
+//            case 1:
+//                iRoiHeight /= 2;
+//                break;
+//            case 2:
+//                iRoiWidth /= 2;
+//                break;
+//            case 3:
+//                iRoiHeight /= 2;
+//                iRoiWidth /= 2;
+//                break;
+//            default:
+//                break;
+//        }
+//        Pel* pixelPointerY = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
+//        Pel* pixelPointerCb = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
+//        Pel* pixelPointerCr = rpcBestCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cr, rpcBestCU->getCtuRsAddr(), rpcBestCU->getZorderIdxInCtu());
+//
+//        for (int i = 0; i < iRoiHeight - 1; i++) {
+//            for (int j = 0; j < iRoiWidth - 1; j++) {
+//                ColetaDados::setVectorYuv(pixelPointerY[j], 0);
+//                ColetaDados::setVectorYuv(pixelPointerCb[j], 1);
+//                ColetaDados::setVectorYuv(pixelPointerCr[j], 2);
+//                ColetaDados::incrementaVectorIndex();
+//            }
+//            pixelPointerY += rpcBestCU->getPic()->getStride(COMPONENT_Y);
+//            pixelPointerCb += rpcBestCU->getPic()->getStride(COMPONENT_Cb);
+//            pixelPointerCr += rpcBestCU->getPic()->getStride(COMPONENT_Cr);
+//        }
+//    }
+//
 #endif
 
     if (getFastDeltaQp()) {
