@@ -56,6 +56,9 @@ double ColetaDados::mediaBlocoCr;
 double ColetaDados::varianciaBlocoY;
 double ColetaDados::varianciaBlocoCb;
 double ColetaDados::varianciaBlocoCr;
+double ColetaDados::desvioBlocoY;
+double ColetaDados::desvioBlocoCb;
+double ColetaDados::desvioBlocoCr;
 int ColetaDados::xx;
 int ColetaDados::yy;
 ColetaDados::ColetaDados() {
@@ -102,6 +105,9 @@ ColetaDados::ColetaDados() {
     varianciaBlocoY=0;
     varianciaBlocoCb=0;
     varianciaBlocoCr=0;
+    desvioBlocoY=0;
+    desvioBlocoCb=0;
+    desvioBlocoCr=0;
     xx=0;
     yy=0;
 }
@@ -426,42 +432,54 @@ void ColetaDados::resetVectorIndex(){
     vectorIndex=0;
 }
 
+int ColetaDados::getVectorIndex(){
+    return vectorIndex;
+}
+
 void ColetaDados::calculaMediaBloco(int cod){
     unsigned int *pointerVector;
     double *pointerMedia;
     double *pointerVariancia;
+    double *pointerDesvio;
     switch(cod){
         case 0:
             pointerVector = vectorY;
             mediaBlocoY = 0;
             varianciaBlocoY = 0;
+            desvioBlocoY = 0;
             pointerMedia = &mediaBlocoY;
             pointerVariancia = &varianciaBlocoY;
+            pointerDesvio = &desvioBlocoY;
             break;
         case 1:
             pointerVector = vectorCb;
             mediaBlocoCb = 0;
             varianciaBlocoCb = 0;
+            desvioBlocoCb = 0;
             pointerMedia = &mediaBlocoCb;
             pointerVariancia = &varianciaBlocoCb;
+            pointerDesvio = &desvioBlocoCb;
             break;
         case 2:
             pointerVector = vectorCr;
             mediaBlocoCr = 0;
             varianciaBlocoCr = 0;
+            desvioBlocoCr = 0;
             pointerMedia = &mediaBlocoCr;
             pointerVariancia = &varianciaBlocoCr;
+            pointerDesvio = &desvioBlocoCr;
             break;
         default:
             pointerVector = NULL;
             pointerMedia = NULL;
             pointerVariancia = NULL;
+            pointerDesvio = NULL;
             break;
     }
-    calculaMediaVetor(pointerVector, pointerMedia, pointerVariancia, vectorIndex);
+    calculaMediaVetor(pointerVector, pointerMedia, pointerVariancia, pointerDesvio, vectorIndex);
 }
 
-void ColetaDados::calculaMediaVetor (unsigned int *pointerVector, double *pointerMedia, double *pointerVariancia, unsigned int index){
+void ColetaDados::calculaMediaVetor (unsigned int *pointerVector, double *pointerMedia, double *pointerVariancia, double *pointerDesvio, unsigned int index){
     unsigned int i = 0;
     while (i < index ){
         *pointerMedia += (double)pointerVector[i]; 
@@ -471,10 +489,11 @@ void ColetaDados::calculaMediaVetor (unsigned int *pointerVector, double *pointe
     
     i = 0;
     while (i < index){
-        *pointerVariancia += pow(((double)pointerVector[i] - *pointerMedia), 2);
+        *pointerVariancia = *pointerVariancia + pow(((double)pointerVector[i] - *pointerMedia), 2);
         i++;
     }
     *pointerVariancia = *pointerVariancia/i;
+    *pointerDesvio = sqrt(*pointerVariancia);
 }
 
 int ColetaDados::getMedia (int cod){
@@ -502,6 +521,21 @@ int ColetaDados::getVariancia (int cod){
             break;
         case 2:
             return (int)varianciaBlocoCr;
+            break;
+    }
+    return -1;
+}
+
+int ColetaDados::getDesvio (int cod){
+    switch(cod){
+        case 0:
+            return (int)desvioBlocoY;
+            break;
+        case 1:
+            return (int)desvioBlocoCb;
+            break;
+        case 2:
+            return (int)desvioBlocoCr;
             break;
     }
     return -1;

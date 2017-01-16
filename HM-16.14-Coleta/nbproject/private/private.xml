@@ -10,9 +10,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/hiik/Git-Repository/projectHEVC-coletaDados/source/Lib/TLibEncoder/TEncSearch.cpp</file>
-            <file>file:/home/hiik/Git-Repository/projectHEVC-coletaDados/source/Lib/TLibEncoder/ColetaDados.cpp</file>
-            <file>file:/home/hiik/Git-Repository/projectHEVC-coletaDados/source/Lib/TLibEncoder/ColetaDados.h</file>
+            <file>file:/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/source/Lib/TLibEncoder/TEncSearch.cpp</file>
+            <file>file:/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/source/Lib/TLibEncoder/ColetaDados.cpp</file>
+            <file>file:/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/source/Lib/TLibEncoder/ColetaDados.h</file>
+            <file>file:/home/paulohenrik/GIT-repository/projectHEVC-coletaDados/source/Lib/TLibCommon/TComDataCU.cpp</file>
         </group>
     </open-files>
 </project-private>
