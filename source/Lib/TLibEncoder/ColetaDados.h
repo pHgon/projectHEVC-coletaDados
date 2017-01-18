@@ -96,6 +96,15 @@ public:
     static int getMedia (int cod);
     static int getVariancia (int cod);
     static int getDesvio (int cod);
+    static void setAtualXeY(int x, int y);
+    static void resetAtualXeY();
+    static int getAtualX();
+    static int getAtualY();
+    static void setSobel(int x, int i, int j);
+    static int calculaSpatialIndex();
+    static int getAtualSpatialIndex();
+    static void setSkipMatriz (bool x);
+    static bool getSkipMatriz ();
     static int xx, yy;
    
 private:
@@ -149,6 +158,12 @@ private:
     static double desvioBlocoY;
     static double desvioBlocoCb;
     static double desvioBlocoCr;
-  
+    static int atualX;
+    static int atualY;
+    static int atualSpatialIndex;
+    static int matrizCU[8][8];
+    static int matrizSobelVer[8][8];
+    static int matrizSobelHor[8][8];
+    static bool skipMatriz;
     static void calculaMediaVetor (unsigned int *pointerVector, double *pointerMedia, double *pointerVariancia, double *pointerDesvio, unsigned int index);
 };

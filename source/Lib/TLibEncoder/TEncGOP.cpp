@@ -50,6 +50,7 @@
 #include <math.h>
 
 #include <deque>
+#include "ColetaDados.h"
 using namespace std;
 
 //! \ingroup TLibEncoder
@@ -1092,14 +1093,12 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
                            Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE )
 {
   // TODO: Split this function up.
-
   TComPic*        pcPic = NULL;
   TComPicYuv*     pcPicYuvRecOut;
   TComSlice*      pcSlice;
   TComOutputBitstream  *pcBitstreamRedirect;
   pcBitstreamRedirect = new TComOutputBitstream;
   AccessUnit::iterator  itLocationToPushSliceHeaderNALU; // used to store location where NALU containing slice header is to be inserted
-
   xInitGOP( iPOCLast, iNumPicRcvd, isField );
 
   m_iNumPicCoded = 0;
@@ -1555,6 +1554,13 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
       for(UInt nextCtuTsAddr = 0; nextCtuTsAddr < numberOfCtusInFrame; )
       {
         m_pcSliceEncoder->precompressSlice( pcPic );
+        
+#if COLETADADOS_H
+        TComPicYuv* frame;
+        frame = pcPic->getPicYuvOrg();
+        printf("%d - %d\n", frame->getWidth(), frame->getHeight());
+#endif
+        
         m_pcSliceEncoder->compressSlice   ( pcPic, false, false );
 
         const UInt curSliceSegmentEnd = pcSlice->getSliceSegmentCurEndCtuTsAddr();

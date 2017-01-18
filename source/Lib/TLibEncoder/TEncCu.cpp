@@ -1287,6 +1287,7 @@ Void TEncCu::xCheckRDCostInter(TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, P
 #if COLETADADOS_H
 //            ColetaDados::incrementaNumPUs();
     ColetaDados::setPartSize(ePartSize);
+    
 //
 //    if (ePartSize < 4) {
 //        UChar iRoiWidth, iRoiHeight;

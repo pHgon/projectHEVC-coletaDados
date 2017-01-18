@@ -59,6 +59,13 @@ double ColetaDados::varianciaBlocoCr;
 double ColetaDados::desvioBlocoY;
 double ColetaDados::desvioBlocoCb;
 double ColetaDados::desvioBlocoCr;
+int ColetaDados::atualX;
+int ColetaDados::atualY;
+int ColetaDados::matrizCU[8][8];
+int ColetaDados::matrizSobelVer[8][8];
+int ColetaDados::matrizSobelHor[8][8];
+bool ColetaDados::skipMatriz;
+int ColetaDados::atualSpatialIndex;
 int ColetaDados::xx;
 int ColetaDados::yy;
 ColetaDados::ColetaDados() {
@@ -108,6 +115,10 @@ ColetaDados::ColetaDados() {
     desvioBlocoY=0;
     desvioBlocoCb=0;
     desvioBlocoCr=0;
+    atualX=0;
+    atualY=0;
+    skipMatriz=false;
+    atualSpatialIndex=0;
     xx=0;
     yy=0;
 }
@@ -485,15 +496,16 @@ void ColetaDados::calculaMediaVetor (unsigned int *pointerVector, double *pointe
         *pointerMedia += (double)pointerVector[i]; 
         i++;
     }
-    *pointerMedia = *pointerMedia/i;
+    *pointerMedia = *pointerMedia/index;
     
     i = 0;
     while (i < index){
         *pointerVariancia = *pointerVariancia + pow(((double)pointerVector[i] - *pointerMedia), 2);
         i++;
     }
-    *pointerVariancia = *pointerVariancia/i;
+    *pointerVariancia = *pointerVariancia/index;
     *pointerDesvio = sqrt(*pointerVariancia);
+    printf("%.2f\n", *pointerVariancia);
 }
 
 int ColetaDados::getMedia (int cod){
@@ -539,4 +551,78 @@ int ColetaDados::getDesvio (int cod){
             break;
     }
     return -1;
+}
+
+void ColetaDados::setAtualXeY(int x, int y){
+    atualX=x;
+    atualY=y;
+}
+
+void ColetaDados::resetAtualXeY(){
+    atualX=0;
+    atualY=0;
+}
+
+int ColetaDados::getAtualX(){
+    return atualX;
+}
+
+int ColetaDados::getAtualY(){
+    return atualY;
+}
+
+void ColetaDados::setSobel(int x, int i, int j){
+    matrizCU[i][j] = x;
+    //printf("%d\n", matrizCU[i][j]);
+}
+
+int ColetaDados::calculaSpatialIndex(){
+    float index = 0;
+    float aux;
+    for(int i=1; i<7; i++){
+        for(int j=1; j<7; j++){
+            matrizSobelVer[i][j] = (1 * matrizCU[i-1][j-1]) +(0 * matrizCU[i-1][j]) + (-1 * matrizCU[i-1][j+1]) +
+                             (2 * matrizCU[i][j-1])   +(0 * matrizCU[i][j])   + (-2 * matrizCU[i][j+1])   +
+                             (1 * matrizCU[i+1][j-1]) +(0 * matrizCU[i+1][j]) + (-1 * matrizCU[i+1][j+1]);
+            
+            matrizSobelHor[i][j] = (1 * matrizCU[i-1][j-1])  +(2 * matrizCU[i-1][j]) + (1 * matrizCU[i-1][j+1]) +
+                             (0 * matrizCU[i][j-1])    +(0 * matrizCU[i][j])   + (0 * matrizCU[i][j+1])   +
+                             (-1 * matrizCU[i+1][j-1]) +(-2 * matrizCU[i+1][j]) + (-1 * matrizCU[i+1][j+1]);
+        }
+    }
+    for(int i=1; i<7; i++){
+        for(int j=1; j<7; j++){
+            matrizCU[i][j] = sqrt(pow(matrizSobelVer[i][j], 2) + pow(matrizSobelHor[i][j], 2));
+        }
+    }
+
+    int media=0;
+    for(int i=1; i<7; i++){
+        for(int j=1; j<7; j++){
+            media+=matrizCU[i][j];
+        }
+    }
+    media = media/36;
+    //printf("media: %d\n", media);
+    for(int i=1; i<7; i++){
+        for(int j=1; j<7; j++){
+            aux = abs(matrizCU[i][j] - media);
+            if (aux>index)
+                index=aux;
+        }
+    }
+    atualSpatialIndex=index;
+    return (int)index;
+}
+
+void ColetaDados::setSkipMatriz(bool x){
+    skipMatriz=x;
+}
+
+bool ColetaDados::getSkipMatriz(){
+    return skipMatriz;
+}
+
+int ColetaDados::getAtualSpatialIndex(){
+    return atualSpatialIndex;
 }

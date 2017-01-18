@@ -186,8 +186,8 @@ Void TEncSearch::destroy() {
     m_tmpYuvPred.destroy();
     m_isInitialized = false;
 #if COLETADADOS_H
-    fprintf(ColetaDados::getFile(), "\n#Distribuição de escolha de melhores MV\n#Predição:              %5.2f  (%%)\n#First Search:          %5.2f  (%%)"
-            "\n#Raster:                %5.2f  (%%)\n#Refinamento s/ Raster: %5.2f  (%%)\n#Refinamento c/ Raster: %5.2f  (%%)",
+    fprintf(ColetaDados::getFile(), "\n%%Distribuição de escolha de melhores MV\n%%Predição:              %5.2f  (%%)\n%%First Search:          %5.2f  (%%)"
+            "\n%%Raster:                %5.2f  (%%)\n%%Refinamento s/ Raster: %5.2f  (%%)\n%%Refinamento c/ Raster: %5.2f  (%%)",
             ((float) ColetaDados::getNumPred() / (float) ColetaDados::getNumTotal())*100, ((float) ColetaDados::getNumFirst() / (float) ColetaDados::getNumTotal())*100,
             ((float) ColetaDados::getNumRaster() / (float) ColetaDados::getNumTotal())*100, ((float) ColetaDados::getNumRefixFirst() / (float) ColetaDados::getNumTotal())*100,
             ((float) ColetaDados::getNumRefixRaster() / (float) ColetaDados::getNumTotal())*100);
@@ -3290,8 +3290,8 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
             Pel* pixelPointerCb = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
             Pel* pixelPointerCr = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cr, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
 
-            for (int i = 0; i < iRoiHeight - 1; i++) {
-                for (int j = 0; j < iRoiWidth - 1; j++) {
+            for (int i = 0; i < iRoiHeight; i++) {
+                for (int j = 0; j < iRoiWidth; j++) {
                     ColetaDados::setVectorYuv(pixelPointerY[j], 0);
                     ColetaDados::setVectorYuv(pixelPointerCb[j], 1);
                     ColetaDados::setVectorYuv(pixelPointerCr[j], 2);
@@ -3301,18 +3301,50 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
                 pixelPointerCb += pcCU->getPic()->getStride(COMPONENT_Cb);
                 pixelPointerCr += pcCU->getPic()->getStride(COMPONENT_Cr);
             }
-                    UInt uPartIdx;
-                    const TComDataCU* pcPU;
-                    pcPU = pcCU->getPUAbove(uPartIdx, iPartIdx);
-                    //pcPU = pcCU->getCtuAbove();
-                    
-                    if (pcPU != NULL){
-                        TComMv mv0;
-                        pcPU->clipMv(mv0);
-                        if (mv0.getHor() != 0 || mv0.getVer() !=0){
-                            printf("%d-%d  ", mv0.getHor(), mv0.getVer());
-                            printf("\n");}
+            
+            int indexX = pcCU->getCUPelX();
+            int indexY = pcCU->getCUPelY();
+            if(indexX == 0 && indexY ==0){
+                ColetaDados::resetAtualXeY();
+                if (ColetaDados::getSkipMatriz()){
+                    for (int i=1; i<7-1; i++){
+                        for (int j=1; j<7; j++){
+                            ColetaDados::setSobel(pixelPointerY[j], i, j);
+                        }
+                    pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);   
                     }
+                    ColetaDados::setSkipMatriz(false);
+                    ColetaDados::setAtualXeY(indexX, indexY);
+                }
+            }
+            
+            if(indexX != ColetaDados::getAtualX() || indexY != ColetaDados::getAtualY()){
+                for (int i=1; i<7-1; i++){
+                    for (int j=1; j<7; j++){
+                        ColetaDados::setSobel(pixelPointerY[j], i, j);
+                    }
+                    pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);
+                    
+                }
+                ColetaDados::setSkipMatriz(false);
+                ColetaDados::setAtualXeY(indexX, indexY);
+            }
+            else{
+                ColetaDados::setSkipMatriz(true);
+            }
+            
+//                    UInt uPartIdx;
+//                    const TComDataCU* pcPU;
+//                    pcPU = pcCU->getPUAbove(uPartIdx, iPartIdx);
+//                    pcPU = pcCU->getCtuAbove();
+//                    
+//                    if (pcPU != NULL){
+//                        TComMv mv0;
+//                        pcPU->clipMv(mv0);
+//                        if (mv0.getHor() != 0 || mv0.getVer() !=0){
+//                            printf("%d-%d  ", mv0.getHor(), mv0.getVer());
+//                            printf("\n");}
+//                    }
                   
         }
 #endif
@@ -3838,13 +3870,20 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
             fprintf(ColetaDados::getFile(), " %3u %3u %3u ", ColetaDados::getRdCostPred(), ColetaDados::getRdCostFirst(), ColetaDados::getRdCostRaster());
             fprintf(ColetaDados::getFile(), " %d ", ColetaDados::getPred(ColetaDados::getMv(0).getHor(), ColetaDados::getMv(0).getVer()));
             fprintf(ColetaDados::getFile(), " %d ", ColetaDados::getFirstLevel());
-//            fprintf(ColetaDados::getFile(), "   |  %d,%d  ", pcCU->getCUPelX(), pcCU->getCUPelY());
             ColetaDados::calculaMediaBloco(0);
             ColetaDados::calculaMediaBloco(1);
             ColetaDados::calculaMediaBloco(2);
             fprintf(ColetaDados::getFile(), "   %3d %4d %3d %3d %4d %3d %3d %4d %3d ", ColetaDados::getMedia(0), ColetaDados::getVariancia(0), ColetaDados::getDesvio(0), 
                     ColetaDados::getMedia(1), ColetaDados::getVariancia(1), ColetaDados::getDesvio(1), ColetaDados::getMedia(2), ColetaDados::getVariancia(2),
                      ColetaDados::getDesvio(2));
+            if (ColetaDados::getSkipMatriz()){
+                fprintf(ColetaDados::getFile(), "%d ", ColetaDados::getAtualSpatialIndex());
+            }
+            else{
+                fprintf(ColetaDados::getFile(), "%d ", ColetaDados::calculaSpatialIndex());
+            }
+            
+                       fprintf(ColetaDados::getFile(), "|%d,%d  ", pcCU->getCUPelX(), pcCU->getCUPelY());
             ColetaDados::resetVectorIndex();
             
             fprintf(ColetaDados::getFile(), "\n");
