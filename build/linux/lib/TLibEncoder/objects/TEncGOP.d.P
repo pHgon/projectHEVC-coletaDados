@@ -76,7 +76,9 @@ objects/TEncGOP.d.o: \
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncAnalyze.h \
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncPreanalyzer.h \
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncPic.h \
- /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.h
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.h \
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/ColetaDados.h \
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/../TLibCommon/TComMv.h
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncGOP.cpp :
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncTop.h :
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibCommon/TComList.h :
@@ -155,3 +157,5 @@ objects/TEncGOP.d.o: \
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncPreanalyzer.h :
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/TEncPic.h :
  /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/NALwrite.h :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/ColetaDados.h :
+ /home/paulohenrik/GIT-repository/projectHEVC-coletaDados/build/linux/lib/TLibEncoder/../../../../source/Lib/TLibEncoder/../TLibCommon/TComMv.h :

@@ -1556,9 +1556,9 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
         m_pcSliceEncoder->precompressSlice( pcPic );
         
 #if COLETADADOS_H
-        TComPicYuv* frame;
-        frame = pcPic->getPicYuvOrg();
-        printf("%d - %d\n", frame->getWidth(), frame->getHeight());
+//        TComPicYuv* frame;
+//        frame = pcPic->getPicYuvOrg();
+//        printf("%d - %d\n", frame->get, frame->getHeight());
 #endif
         
         m_pcSliceEncoder->compressSlice   ( pcPic, false, false );

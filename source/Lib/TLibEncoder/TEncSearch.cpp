@@ -3302,37 +3302,37 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
                 pixelPointerCr += pcCU->getPic()->getStride(COMPONENT_Cr);
             }
             
-            int indexX = pcCU->getCUPelX();
-            int indexY = pcCU->getCUPelY();
-            if(indexX == 0 && indexY ==0){
-                ColetaDados::resetAtualXeY();
-                if (ColetaDados::getSkipMatriz()){
-                    for (int i=1; i<7-1; i++){
-                        for (int j=1; j<7; j++){
-                            ColetaDados::setSobel(pixelPointerY[j], i, j);
-                        }
-                    pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);   
-                    }
-                    ColetaDados::setSkipMatriz(false);
-                    ColetaDados::setAtualXeY(indexX, indexY);
-                }
-            }
-            
-            if(indexX != ColetaDados::getAtualX() || indexY != ColetaDados::getAtualY()){
-                for (int i=1; i<7-1; i++){
-                    for (int j=1; j<7; j++){
-                        ColetaDados::setSobel(pixelPointerY[j], i, j);
-                    }
-                    pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);
-                    
-                }
-                ColetaDados::setSkipMatriz(false);
-                ColetaDados::setAtualXeY(indexX, indexY);
-            }
-            else{
-                ColetaDados::setSkipMatriz(true);
-            }
-            
+//            int indexX = pcCU->getCUPelX();
+//            int indexY = pcCU->getCUPelY();
+//            if(indexX == 0 && indexY ==0){
+//                ColetaDados::resetAtualXeY();
+//                if (ColetaDados::getSkipMatriz()){
+//                    for (int i=1; i<7-1; i++){
+//                        for (int j=1; j<7; j++){
+//                            ColetaDados::setSobel(pixelPointerY[j], i, j);
+//                        }
+//                    pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);   
+//                    }
+//                    ColetaDados::setSkipMatriz(false);
+//                    ColetaDados::setAtualXeY(indexX, indexY);
+//                }
+//            }
+//            
+//            if(indexX != ColetaDados::getAtualX() || indexY != ColetaDados::getAtualY()){
+//                for (int i=1; i<7; i++){
+//                    for (int j=1; j<7; j++){
+//                        ColetaDados::setSobel(pixelPointerY[j], i, j);
+//                    }
+//                    pixelPointerY  += pcCU->getPic()->getStride(COMPONENT_Y);
+//                    
+//                }
+//                ColetaDados::setSkipMatriz(false);
+//                ColetaDados::setAtualXeY(indexX, indexY);
+//            }
+//            else{
+//                ColetaDados::setSkipMatriz(true);
+//            }
+//            
 //                    UInt uPartIdx;
 //                    const TComDataCU* pcPU;
 //                    pcPU = pcCU->getPUAbove(uPartIdx, iPartIdx);
@@ -3876,14 +3876,15 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
             fprintf(ColetaDados::getFile(), "   %3d %4d %3d %3d %4d %3d %3d %4d %3d ", ColetaDados::getMedia(0), ColetaDados::getVariancia(0), ColetaDados::getDesvio(0), 
                     ColetaDados::getMedia(1), ColetaDados::getVariancia(1), ColetaDados::getDesvio(1), ColetaDados::getMedia(2), ColetaDados::getVariancia(2),
                      ColetaDados::getDesvio(2));
-            if (ColetaDados::getSkipMatriz()){
-                fprintf(ColetaDados::getFile(), "%d ", ColetaDados::getAtualSpatialIndex());
-            }
-            else{
-                fprintf(ColetaDados::getFile(), "%d ", ColetaDados::calculaSpatialIndex());
-            }
+            fprintf(ColetaDados::getFile(), "   %3d  %3d ", ColetaDados::getAtualSpatialIndex(), ColetaDados::getAtualTemporalIndex());
+//            if (ColetaDados::getSkipMatriz()){
+//                fprintf(ColetaDados::getFile(), "  %d ", ColetaDados::getAtualSpatialIndex());
+//            }
+//            else{
+//                fprintf(ColetaDados::getFile(), "  %d ", ColetaDados::calculaSpatialIndex());
+//            }
             
-                       fprintf(ColetaDados::getFile(), "|%d,%d  ", pcCU->getCUPelX(), pcCU->getCUPelY());
+//                       fprintf(ColetaDados::getFile(), "|%d,%d  ", pcCU->getCUPelX(), pcCU->getCUPelY());
             ColetaDados::resetVectorIndex();
             
             fprintf(ColetaDados::getFile(), "\n");

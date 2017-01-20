@@ -61,11 +61,14 @@ double ColetaDados::desvioBlocoCb;
 double ColetaDados::desvioBlocoCr;
 int ColetaDados::atualX;
 int ColetaDados::atualY;
-int ColetaDados::matrizCU[8][8];
-int ColetaDados::matrizSobelVer[8][8];
-int ColetaDados::matrizSobelHor[8][8];
+int ColetaDados::matrizCU[64][64];
+int ColetaDados::matrizSobelVer[64][64];
+int ColetaDados::matrizSobelHor[64][64];
+int ColetaDados::matrizFrame[3840][2160];
+int ColetaDados::matrizTI[64][64];
 bool ColetaDados::skipMatriz;
 int ColetaDados::atualSpatialIndex;
+int ColetaDados::atualTemporalIndex;
 int ColetaDados::xx;
 int ColetaDados::yy;
 ColetaDados::ColetaDados() {
@@ -117,8 +120,9 @@ ColetaDados::ColetaDados() {
     desvioBlocoCr=0;
     atualX=0;
     atualY=0;
-    skipMatriz=false;
+    skipMatriz=true;
     atualSpatialIndex=0;
+    atualTemporalIndex=0;
     xx=0;
     yy=0;
 }
@@ -505,7 +509,7 @@ void ColetaDados::calculaMediaVetor (unsigned int *pointerVector, double *pointe
     }
     *pointerVariancia = *pointerVariancia/index;
     *pointerDesvio = sqrt(*pointerVariancia);
-    printf("%.2f\n", *pointerVariancia);
+    //printf("%.2f\n", *pointerVariancia);
 }
 
 int ColetaDados::getMedia (int cod){
@@ -576,11 +580,11 @@ void ColetaDados::setSobel(int x, int i, int j){
     //printf("%d\n", matrizCU[i][j]);
 }
 
-int ColetaDados::calculaSpatialIndex(){
+void ColetaDados::calculaSpatialIndex(){
     float index = 0;
     float aux;
-    for(int i=1; i<7; i++){
-        for(int j=1; j<7; j++){
+    for(int i=1; i<64-1; i++){
+        for(int j=1; j<64-1; j++){
             matrizSobelVer[i][j] = (1 * matrizCU[i-1][j-1]) +(0 * matrizCU[i-1][j]) + (-1 * matrizCU[i-1][j+1]) +
                              (2 * matrizCU[i][j-1])   +(0 * matrizCU[i][j])   + (-2 * matrizCU[i][j+1])   +
                              (1 * matrizCU[i+1][j-1]) +(0 * matrizCU[i+1][j]) + (-1 * matrizCU[i+1][j+1]);
@@ -590,8 +594,8 @@ int ColetaDados::calculaSpatialIndex(){
                              (-1 * matrizCU[i+1][j-1]) +(-2 * matrizCU[i+1][j]) + (-1 * matrizCU[i+1][j+1]);
         }
     }
-    for(int i=1; i<7; i++){
-        for(int j=1; j<7; j++){
+    for(int i=1; i<64-1; i++){
+        for(int j=1; j<64-1; j++){
             matrizCU[i][j] = sqrt(pow(matrizSobelVer[i][j], 2) + pow(matrizSobelHor[i][j], 2));
         }
     }
@@ -602,17 +606,16 @@ int ColetaDados::calculaSpatialIndex(){
             media+=matrizCU[i][j];
         }
     }
-    media = media/36;
-    //printf("media: %d\n", media);
-    for(int i=1; i<7; i++){
-        for(int j=1; j<7; j++){
+    media = media/3844;
+    for(int i=1; i<64-1; i++){
+        for(int j=1; j<64-1; j++){
             aux = abs(matrizCU[i][j] - media);
             if (aux>index)
                 index=aux;
         }
     }
     atualSpatialIndex=index;
-    return (int)index;
+//    return (int)index;
 }
 
 void ColetaDados::setSkipMatriz(bool x){
@@ -625,4 +628,75 @@ bool ColetaDados::getSkipMatriz(){
 
 int ColetaDados::getAtualSpatialIndex(){
     return atualSpatialIndex;
+}
+
+void ColetaDados::setFrame(int x, int i, int j){
+    matrizFrame[i][j] = x;
+}
+
+void ColetaDados::calculaTemporalIndex(int x, int y){
+    int k = x;
+    int l = y;
+    int i = 0;
+    int j = 0;
+    
+    
+    while(i<64){
+        while(j<64){
+            matrizTI[i][j] = matrizCU[i][j] - matrizFrame[k][l];
+            j++;
+            l++;
+        }
+        i++;
+        k++;
+    }
+//    for (int i=0; i<64; i++){
+//        for (int j=0; j<64; j++){
+//            matrizTI[i][j] = matrizCU[i][j] - matrizFrame[k][l];
+//            l++;
+//        }
+//        k++;
+//    }
+    
+    double media = 0;
+    
+    for (i=0; i<64; i++){
+        for (j=0; j<64; j++){
+            media += matrizTI[i][j];
+        }
+    }
+    
+    media = media /4096;
+    int index = 0; 
+    int aux;
+    
+    for (i=0; i<64; i++){
+        for (j=0; j<64; j++){
+           aux = abs(matrizTI[i][j] - media);
+           if (index < aux)
+               index = aux;
+        }
+    }
+    
+    k = x;
+    l = y;
+    i = 0;
+    j = 0;
+    
+    
+     while(i<64){
+        while(j<64){
+            matrizFrame[k][l] = matrizCU[i][j];
+            j++;
+            l++;
+        }
+        i++;
+        k++;
+    }
+    
+    atualTemporalIndex = index;   
+}
+
+int ColetaDados::getAtualTemporalIndex(){
+    return atualTemporalIndex;
 }

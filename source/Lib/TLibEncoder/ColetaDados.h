@@ -101,10 +101,13 @@ public:
     static int getAtualX();
     static int getAtualY();
     static void setSobel(int x, int i, int j);
-    static int calculaSpatialIndex();
+    static void calculaSpatialIndex();
     static int getAtualSpatialIndex();
     static void setSkipMatriz (bool x);
     static bool getSkipMatriz ();
+    static void setFrame(int x, int i, int j);
+    static void calculaTemporalIndex(int x, int y);
+    static int getAtualTemporalIndex();
     static int xx, yy;
    
 private:
@@ -161,9 +164,12 @@ private:
     static int atualX;
     static int atualY;
     static int atualSpatialIndex;
-    static int matrizCU[8][8];
-    static int matrizSobelVer[8][8];
-    static int matrizSobelHor[8][8];
+    static int atualTemporalIndex;
+    static int matrizCU[64][64];
+    static int matrizSobelVer[64][64];
+    static int matrizSobelHor[64][64];
+    static int matrizFrame[3840][2160];
+    static int matrizTI[64][64];
     static bool skipMatriz;
     static void calculaMediaVetor (unsigned int *pointerVector, double *pointerMedia, double *pointerVariancia, double *pointerDesvio, unsigned int index);
 };
