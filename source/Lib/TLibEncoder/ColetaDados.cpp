@@ -69,6 +69,19 @@ int ColetaDados::matrizTI[64][64];
 bool ColetaDados::skipMatriz;
 int ColetaDados::atualSpatialIndex;
 int ColetaDados::atualTemporalIndex;
+int ColetaDados::bloco64x64;
+int ColetaDados::bloco64x32;
+int ColetaDados::bloco32x64;
+int ColetaDados::bloco32x32;
+int ColetaDados::bloco32x16;
+int ColetaDados::bloco16x32;
+int ColetaDados::bloco16x16;
+int ColetaDados::bloco16x8;
+int ColetaDados::bloco8x16;
+int ColetaDados::bloco8x8;
+int ColetaDados::bloco8x4;
+int ColetaDados::bloco4x8;
+int ColetaDados::numPUsAsy;
 int ColetaDados::xx;
 int ColetaDados::yy;
 ColetaDados::ColetaDados() {
@@ -123,6 +136,19 @@ ColetaDados::ColetaDados() {
     skipMatriz=true;
     atualSpatialIndex=0;
     atualTemporalIndex=0;
+    bloco64x64=0;
+    bloco64x32=0;
+    bloco32x64=0;
+    bloco32x32=0;
+    bloco32x16=0;
+    bloco16x32=0;
+    bloco16x16=0;
+    bloco16x8=0;
+    bloco8x16=0;
+    bloco8x8=0;
+    bloco8x4=0;
+    bloco4x8=0;
+    numPUsAsy=0;
     xx=0;
     yy=0;
 }
@@ -699,4 +725,89 @@ void ColetaDados::calculaTemporalIndex(int x, int y){
 
 int ColetaDados::getAtualTemporalIndex(){
     return atualTemporalIndex;
+}
+
+void ColetaDados::incrementaBlocos(int x, int y){
+    if(x==64 && y==64)
+        bloco64x64++;
+    else{
+        if(x==64 && y==32)
+            bloco64x32++;
+        else{
+            if(x==32 && y==64)
+                bloco32x64++;
+            else{
+                if(x==32 && y==32)
+                    bloco32x32++;
+                else{
+                    if(x==32 && y==16)
+                        bloco32x16++;
+                    else{
+                        if(x==16 && y==32)
+                            bloco16x32++;
+                        else{
+                            if(x==16 && y==16)
+                                bloco16x16++;
+                            else{
+                                if(x==16 && y==8)
+                                    bloco16x8++;
+                                else{
+                                    if(x==8 && y==16)
+                                        bloco8x16++;
+                                    else{
+                                        if(x==8 && y==8)
+                                           bloco8x8++;
+                                        else{
+                                            if(x==8 && y==4)
+                                                bloco8x4++;
+                                            else
+                                                bloco4x8++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+int ColetaDados::getBlocos(int x){
+    switch(x){
+        case 0:
+            return bloco64x64;
+        case 1:
+            return bloco64x32;
+        case 2:
+            return bloco32x64;
+        case 3:
+            return bloco32x32;
+        case 4:
+            return bloco32x16;
+        case 5:
+            return bloco16x32;
+        case 6:
+            return bloco16x16;
+        case 7:
+            return bloco16x8;
+        case 8:
+            return bloco8x16;
+        case 9:
+            return bloco8x8;
+        case 10:
+            return bloco8x4;
+        case 11:
+            return bloco4x8;
+    }
+    return -1;
+}
+
+void ColetaDados::incrementaNumPUsAsy(void){
+    numPUsAsy++;
+}
+
+int ColetaDados::getNumPUsAsy(void){
+    return numPUsAsy;
 }

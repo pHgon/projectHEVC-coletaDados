@@ -149,6 +149,11 @@ private:
   UInt          m_uiTotalBins;                          ///< sum of partition bins
   SChar         m_codedQP;
   UChar*        m_explicitRdpcmMode[MAX_NUM_COMPONENT]; ///< Stores the explicit RDPCM mode for all TUs belonging to this CU
+  
+  //  -------------------------------------- PAULO H Variáveis ------------------------------------//
+  int           partitionMode;                          //< Store the partition mode of PU
+  int           tzsStage;                               //< Store the terminate stage of TZS process
+  //  -------------------------------------- PAULO H Variáveis ------------------------------------//
 
 protected:
 
@@ -469,6 +474,13 @@ public:
   UInt&         getTotalNumPart               ( )                                                          { return m_uiNumPartition;    }
 
   UInt          getCoefScanIdx                ( const UInt uiAbsPartIdx, const UInt uiWidth, const UInt uiHeight, const ComponentID compID ) const ;
+  
+ //  -------------------------------------- PAULO H Métodos ------------------------------------//
+  void          setPartitionMode              (int x)                                                      { partitionMode=x;            }
+  void          setTzsStage                   (int x)                                                      { tzsStage=x;                 }
+  int           getPartitionMode              ( ) const                                                    { return partitionMode;       }
+  int           getTzsStage                   ( ) const                                                    { return tzsStage;            }
+ //  -------------------------------------- PAULO H Métodos ------------------------------------//
 
 };
 
@@ -553,7 +565,7 @@ namespace RasterAddress
   {
     // addr / numUnitsPerRow < val
     return addr < val * numUnitsPerRow;
-  }
+  } 
 }
 
 //! \}

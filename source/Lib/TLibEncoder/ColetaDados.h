@@ -108,6 +108,10 @@ public:
     static void setFrame(int x, int i, int j);
     static void calculaTemporalIndex(int x, int y);
     static int getAtualTemporalIndex();
+    static void incrementaBlocos(int x, int y);
+    static int getBlocos(int x);
+    static void incrementaNumPUsAsy(void);
+    static int getNumPUsAsy(void);
     static int xx, yy;
    
 private:
@@ -147,6 +151,7 @@ private:
     static unsigned int RdCostRaster;
     static unsigned int partIdxTU;
     static unsigned int numPUs;
+    static unsigned int numPUsTotal;
     static unsigned int partSize;
     static unsigned int vectorY [4097];
     static unsigned int vectorCb[4097];
@@ -171,5 +176,18 @@ private:
     static int matrizFrame[3840][2160];
     static int matrizTI[64][64];
     static bool skipMatriz;
+    static int bloco64x64;
+    static int bloco64x32;
+    static int bloco32x64;
+    static int bloco32x32;
+    static int bloco32x16;
+    static int bloco16x32;
+    static int bloco16x16;
+    static int bloco16x8;
+    static int bloco8x16;
+    static int bloco8x8;
+    static int bloco8x4;
+    static int bloco4x8;
+    static int numPUsAsy;
     static void calculaMediaVetor (unsigned int *pointerVector, double *pointerMedia, double *pointerVariancia, double *pointerDesvio, unsigned int index);
 };

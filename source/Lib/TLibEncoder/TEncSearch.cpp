@@ -191,6 +191,12 @@ Void TEncSearch::destroy() {
             ((float) ColetaDados::getNumPred() / (float) ColetaDados::getNumTotal())*100, ((float) ColetaDados::getNumFirst() / (float) ColetaDados::getNumTotal())*100,
             ((float) ColetaDados::getNumRaster() / (float) ColetaDados::getNumTotal())*100, ((float) ColetaDados::getNumRefixFirst() / (float) ColetaDados::getNumTotal())*100,
             ((float) ColetaDados::getNumRefixRaster() / (float) ColetaDados::getNumTotal())*100);
+    
+    fprintf(ColetaDados::getFile(), "\n%%Total PUs Symmetric: %d\n%%Total PUs Asymmetric: %d\n%%Total PUs: %d\n\n%%BLOCKS:\n%%64x64: %d\n%%64x32: %d\n%%32x64: %d\n%%32x32: %d\n%%32x16: %d\n"
+            "%%16x32: %d\n%%16x16: %d\n%%16x8:  %d\n%%8x16:  %d\n%%8x8:   %d\n%%8x4:   %d\n%%4x8:   %d", ColetaDados::getNumTotal(), ColetaDados::getNumPUsAsy(), 
+            ColetaDados::getNumTotal()+ColetaDados::getNumPUsAsy(), ColetaDados::getBlocos(0),ColetaDados::getBlocos(1),ColetaDados::getBlocos(2),ColetaDados::getBlocos(3),
+            ColetaDados::getBlocos(4),ColetaDados::getBlocos(5),ColetaDados::getBlocos(6),ColetaDados::getBlocos(7),ColetaDados::getBlocos(8),ColetaDados::getBlocos(9),
+            ColetaDados::getBlocos(10),ColetaDados::getBlocos(11));
 #endif
 }
 
@@ -3285,7 +3291,32 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
             pIntegerMv2Nx2NPred = &(m_integerMv2Nx2N[eRefPicList][iRefIdxPred]);
         }
 #if COLETADADOS_H
-        if (ColetaDados::getPartSize() < 4) {
+//        float aux = iRoiWidth/iRoiHeight;
+//        if (aux == 1)
+//            pcCU->setPartitionMode(0);
+//        else{
+//            if(aux == 2)
+//                pcCU->setPartitionMode(1);
+//            else{
+//                if(aux == 0.5)
+//                    pcCU->setPartitionMode(2);
+//                else{
+//                    if (aux == 4)
+//                        pcCU->setPartitionMode(4);
+//                    else{
+//                        if (aux == 0.25)
+//                            pcCU->setPartitionMode(6);
+//                        else{
+//                            if (iRoiWidth > iRoiHeight)
+//                                pcCU->setPartitionMode(5);
+//                            else
+//                                pcCU->setPartitionMode(7);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        if (pcCU->getPartitionSize(0) < 4) {
             Pel* pixelPointerY = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
             Pel* pixelPointerCb = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
             Pel* pixelPointerCr = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cr, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
@@ -3312,6 +3343,26 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
 //            }
 
         }
+        
+//        TComDataCU* pcPU;
+//        
+//        pcPU = pcCU->getCtuAbove();
+//        if (pcPU!= NULL){
+//        TComMv mv;
+//        pcPU->clipMv(mv);
+//        printf("%d - %d\n", mv.getHor(), mv.getVer());
+//        }
+//        UInt curPart;
+//        const TComDataCU* pcPU = pcCU->getPUAbove(curPart, ColetaDados::getPartIndex());
+//        if (pcPU!=NULL){
+//            printf("%d  %d\n", pcPU->getPartitionMode(), pcPU->getTzsStage());
+//        }
+//        else
+//            printf("-1  -1  -1\n");
+//     
+//        
+//        printf("\n\n");
+        
 #endif
         xPatternSearchFast(pcCU, pcPatternKey, piRefY, iRefStride, &cMvSrchRngLT, &cMvSrchRngRB, rcMv, ruiCost, pIntegerMv2Nx2NPred);
         if (pcCU->getPartitionSize(0) == SIZE_2Nx2N) {
@@ -3786,30 +3837,30 @@ else {
         UInt uiPartAddr;
         Int iPartIdx = ColetaDados::getPartIndex();
         pcCU->getPartIndexAndSize(iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight);
-
-
+         
         fprintf(ColetaDados::getFile(), "%7d %d ", ColetaDados::getTamWidth() * ColetaDados::getTamHeight(), ColetaDados::getQP());
         fprintf(ColetaDados::getFile(), "  %2d %2d  %d  ", iRoiWidth, iRoiHeight, pred);
         switch (ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY)) {
             case 0:
                 ColetaDados::incrementaNumPred();
-                fprintf(ColetaDados::getFile(), "1 0 0 0 ");
+                fprintf(ColetaDados::getFile(), "1 0 0 0 0 ");
                 break;
             case 1:
                 ColetaDados::incrementaNumFirst();
-                fprintf(ColetaDados::getFile(), "0 1 0 0 ");
+                fprintf(ColetaDados::getFile(), "0 1 0 0 0 ");
                 break;
             case 2:
                 ColetaDados::incrementaNumRaster();
-                fprintf(ColetaDados::getFile(), "0 0 1 0 ");
+                fprintf(ColetaDados::getFile(), "0 0 1 0 0 ");
                 break;
             case 3:
                 if (ColetaDados::getRaster() == 1) {
                     ColetaDados::incrementaNumRefixRaster();
+                    fprintf(ColetaDados::getFile(), "0 0 0 1 0 ");
                 } else {
                     ColetaDados::incrementaNumRefixFirst();
+                    fprintf(ColetaDados::getFile(), "0 0 0 0 1 ");
                 }
-                fprintf(ColetaDados::getFile(), "0 0 0 1 ");
                 break;
         }
         fprintf(ColetaDados::getFile(), "%4d %4d ", ColetaDados::getMv(0).getHor(), ColetaDados::getMv(0).getVer());
@@ -3843,7 +3894,49 @@ else {
                 ColetaDados::getDesvio(2));
         ColetaDados::resetVectorIndex();
         fprintf(ColetaDados::getFile(), "   %3d  %3d ", ColetaDados::getAtualSpatialIndex(), ColetaDados::getAtualTemporalIndex());
-
+        
+        ColetaDados::incrementaBlocos(iRoiWidth, iRoiHeight);   
+//
+//        UInt curPart;
+//        const TComDataCU* pcPU;
+//        
+//        pcPU = pcCU->getCtuAbove();
+//        TComMv mv;
+//        pcPU->clipMv(mv);
+//        printf("%d - %d\n", mv.getHor(), mv.getVer());
+//        
+//        pcPU = pcCU->getPUAbove(curPart, iPartIdx);
+//        if (pcPU!=NULL){
+//            //printf("%d  ", pcPU->getPartitionSize(0));
+//            fprintf(ColetaDados::getFile(), " %d ", pcPU->getPartitionSize(0));
+//        }
+//        else{
+//            //printf("-1  ");
+//        fprintf(ColetaDados::getFile(), " -1 ");
+//        }
+//        
+//        pcPU = pcCU->getPUAboveLeft(curPart, iPartIdx);
+//        if (pcPU!=NULL){
+//            //printf("%d  ", pcPU->getPartitionSize(0));
+//            fprintf(ColetaDados::getFile(), " %d ", pcPU->getPartitionSize(0));
+//        }
+//        else{
+//           // printf("-1  ");
+//        fprintf(ColetaDados::getFile(), " -1 ");
+//        }
+//        
+//        pcPU = pcCU->getPULeft(curPart, iPartIdx);
+//        if (pcPU!=NULL){
+//            //printf("%d  ", pcPU->getPartitionSize(0));
+//        fprintf(ColetaDados::getFile(), " %d ", pcPU->getPartitionSize(0));
+//        }
+//        else{
+//           // printf("-1  ");
+//        fprintf(ColetaDados::getFile(), " -1 ");
+//        }
+        
+        
+        //printf("\n");
 
         fprintf(ColetaDados::getFile(), "\n");
 
@@ -3875,8 +3968,10 @@ else {
         fprintf(ColetaDados::getFile(),"X%dY%d\n",pcCU->getCUPelX(),pcCU->getCUPelY());
          */
     }
+    else{
+        ColetaDados::incrementaNumPUsAsy();
+    }
 #endif
-
 
     // write out best match
     rcMv.set(cStruct.iBestX, cStruct.iBestY);
@@ -4915,7 +5010,7 @@ Void TEncSearch::xSetInterResidualQTData(TComYuv* pcResi, Bool bSpatial, TComTU 
 UInt TEncSearch::xModeBitsIntra(TComDataCU* pcCU, UInt uiMode, UInt uiPartOffset, UInt uiDepth, const ChannelType chType) {
     // Reload only contexts required for coding intra mode information
     m_pcRDGoOnSbacCoder->loadIntraDirMode(m_pppcRDSbacCoder[uiDepth][CI_CURR_BEST], chType);
-
+    
     // Temporarily set the intra dir being tested, and only
     // for absPartIdx, since encodeIntraDirModeLuma/Chroma only use
     // the entry at absPartIdx.
@@ -5191,7 +5286,6 @@ Void TEncSearch::setWpScalingDistParam(TComDataCU* pcCU, Int iRefIdx, RefPicList
         m_cDistParam.bApplyWeight = false;
         return;
     }
-
     TComSlice *pcSlice = pcCU->getSlice();
     WPScalingParam *wp0, *wp1;
 
