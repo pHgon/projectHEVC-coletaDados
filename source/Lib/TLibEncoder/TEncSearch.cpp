@@ -3291,31 +3291,6 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
             pIntegerMv2Nx2NPred = &(m_integerMv2Nx2N[eRefPicList][iRefIdxPred]);
         }
 #if COLETADADOS_H
-//        float aux = iRoiWidth/iRoiHeight;
-//        if (aux == 1)
-//            pcCU->setPartitionMode(0);
-//        else{
-//            if(aux == 2)
-//                pcCU->setPartitionMode(1);
-//            else{
-//                if(aux == 0.5)
-//                    pcCU->setPartitionMode(2);
-//                else{
-//                    if (aux == 4)
-//                        pcCU->setPartitionMode(4);
-//                    else{
-//                        if (aux == 0.25)
-//                            pcCU->setPartitionMode(6);
-//                        else{
-//                            if (iRoiWidth > iRoiHeight)
-//                                pcCU->setPartitionMode(5);
-//                            else
-//                                pcCU->setPartitionMode(7);
-//                        }
-//                    }
-//                }
-//            }
-//        }
         if (pcCU->getPartitionSize(0) < 4) {
             Pel* pixelPointerY = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
             Pel* pixelPointerCb = pcCU->getPic()->getPicYuvOrg()->getAddr(COMPONENT_Cb, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu());
@@ -3332,37 +3307,10 @@ Void TEncSearch::xMotionEstimation(TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPar
                 pixelPointerCb += pcCU->getPic()->getStride(COMPONENT_Cb);
                 pixelPointerCr += pcCU->getPic()->getStride(COMPONENT_Cr);
             }
-
-//            UInt currPart;
-//            const TComDataCU* pcPU = pcCU->getPULeft(currPart, pcCU->getZorderIdxInCtu());
-//            if (pcPU != NULL){
-//                UInt aux1, aux2;
-//                aux1 = pcPU->getWidth(0);
-//                aux2 = pcPU->getHeight(0);
-//                printf("%d - %d\n", aux1, aux2);
-//            }
-
         }
         
-//        TComDataCU* pcPU;
-//        
-//        pcPU = pcCU->getCtuAbove();
-//        if (pcPU!= NULL){
-//        TComMv mv;
-//        pcPU->clipMv(mv);
-//        printf("%d - %d\n", mv.getHor(), mv.getVer());
-//        }
-//        UInt curPart;
-//        const TComDataCU* pcPU = pcCU->getPUAbove(curPart, ColetaDados::getPartIndex());
-//        if (pcPU!=NULL){
-//            printf("%d  %d\n", pcPU->getPartitionMode(), pcPU->getTzsStage());
-//        }
-//        else
-//            printf("-1  -1  -1\n");
-//     
-//        
-//        printf("\n\n");
-        
+        pcCU->setPartitionMode(pcCU->getPartitionSize(0));
+
 #endif
         xPatternSearchFast(pcCU, pcPatternKey, piRefY, iRefStride, &cMvSrchRngLT, &cMvSrchRngRB, rcMv, ruiCost, pIntegerMv2Nx2NPred);
         if (pcCU->getPartitionSize(0) == SIZE_2Nx2N) {
@@ -3896,77 +3844,58 @@ else {
         fprintf(ColetaDados::getFile(), "   %3d  %3d ", ColetaDados::getAtualSpatialIndex(), ColetaDados::getAtualTemporalIndex());
         
         ColetaDados::incrementaBlocos(iRoiWidth, iRoiHeight);   
-//
-//        UInt curPart;
-//        const TComDataCU* pcPU;
-//        
-//        pcPU = pcCU->getCtuAbove();
-//        TComMv mv;
-//        pcPU->clipMv(mv);
-//        printf("%d - %d\n", mv.getHor(), mv.getVer());
-//        
-//        pcPU = pcCU->getPUAbove(curPart, iPartIdx);
-//        if (pcPU!=NULL){
-//            //printf("%d  ", pcPU->getPartitionSize(0));
-//            fprintf(ColetaDados::getFile(), " %d ", pcPU->getPartitionSize(0));
-//        }
-//        else{
-//            //printf("-1  ");
-//        fprintf(ColetaDados::getFile(), " -1 ");
-//        }
-//        
-//        pcPU = pcCU->getPUAboveLeft(curPart, iPartIdx);
-//        if (pcPU!=NULL){
-//            //printf("%d  ", pcPU->getPartitionSize(0));
-//            fprintf(ColetaDados::getFile(), " %d ", pcPU->getPartitionSize(0));
-//        }
-//        else{
-//           // printf("-1  ");
-//        fprintf(ColetaDados::getFile(), " -1 ");
-//        }
-//        
-//        pcPU = pcCU->getPULeft(curPart, iPartIdx);
-//        if (pcPU!=NULL){
-//            //printf("%d  ", pcPU->getPartitionSize(0));
-//        fprintf(ColetaDados::getFile(), " %d ", pcPU->getPartitionSize(0));
-//        }
-//        else{
-//           // printf("-1  ");
-//        fprintf(ColetaDados::getFile(), " -1 ");
-//        }
+
+        UInt curPart;
+        const TComDataCU* pcPU;
         
+        pcPU = pcCU->getPUAbove(curPart, iPartIdx);
+        if (pcPU!=NULL){
+            printf(" %d - %d\n", pcPU->getPartitionSize(0), pcPU->getPartitionMode());
+            fprintf(ColetaDados::getFile(), " %2d ", pcPU->getPartitionSize(0));
+        }
+        else{
+            fprintf(ColetaDados::getFile(), " -1 ");
+        }
         
-        //printf("\n");
+        pcPU = pcCU->getPUAboveLeft(curPart, iPartIdx);
+        if (pcPU!=NULL){
+            fprintf(ColetaDados::getFile(), " %2d ", pcPU->getPartitionSize(0));
+            printf(" %d - %d\n", pcPU->getPartitionSize(0), pcPU->getPartitionMode());
+        }
+        else{
+            fprintf(ColetaDados::getFile(), " -1 ");
+        }
+        
+        pcPU = pcCU->getPULeft(curPart, iPartIdx);
+        if (pcPU!=NULL){
+            fprintf(ColetaDados::getFile(), " %2d ", pcPU->getPartitionSize(0));
+            printf(" %d - %d\n", pcPU->getPartitionSize(0), pcPU->getPartitionMode());
+        }
+        else{
+            fprintf(ColetaDados::getFile(), " -1 ");
+        }
+        
+        pcPU = pcCU->getPUBelowLeft(curPart, iPartIdx);
+        if (pcPU!=NULL){
+            fprintf(ColetaDados::getFile(), " %2d ", pcPU->getPartitionSize(0));
+            printf(" %d - %d\n", pcPU->getPartitionSize(0), pcPU->getPartitionMode());
+        }
+        else{
+            fprintf(ColetaDados::getFile(), " -1 ");
+        }
+        
+        pcPU = pcCU->getPUAboveRight(curPart, iPartIdx);
+        if (pcPU!=NULL){
+            fprintf(ColetaDados::getFile(), " %2d ", pcPU->getPartitionSize(0));
+            printf(" %d - %d\n", pcPU->getPartitionSize(0), pcPU->getPartitionMode());
+        }
+        else{
+            fprintf(ColetaDados::getFile(), " -1 ");
+        }
+        
+        printf("\n");
 
         fprintf(ColetaDados::getFile(), "\n");
-
-        //fprintf(ColetaDados::getFile(), "       # %7.d | %7.d | %7.d | %7.d | %7.d | %7.d |\n", ColetaDados::getNumPred(), ColetaDados::getNumFirst(), ColetaDados::getNumRaster(), 
-        //        ColetaDados::getNumRefixFirst(), ColetaDados::getNumRefixRaster(), ColetaDados::getNumTotal());
-
-        /*  
-        else{
-            ColetaDados::setRefinement(0);
-        }
-        ColetaDados::getMv(3).set(cStruct.iBestX,cStruct.iBestY);
-        Int iRoiWidth, iRoiHeight;
-        UInt uiPartAddr;
-        Int iPartIdx=ColetaDados::getPartIndex();
-        pcCU->getPartIndexAndSize( iPartIdx, uiPartAddr, iRoiWidth, iRoiHeight );
-    
-        fprintf(ColetaDados::getFile(),"Pr%d",pred);
-        fprintf(ColetaDados::getFile(),"FL%d",ColetaDados::getFirstLevel());
-        fprintf(ColetaDados::getFile(),"Ra%dMv%d,%d",ColetaDados::getRaster(),ColetaDados::getMv(2).getHor(),ColetaDados::getMv(2).getVer());
-        fprintf(ColetaDados::getFile(),"Re%d",ColetaDados::getRefinement());
-        if(ColetaDados::getIteration()!=0)
-            fprintf(ColetaDados::getFile(),"Max%dAv%dIt%d",ColetaDados::getMaxLevel(),(int)(ColetaDados::getTotalLevel()/ColetaDados::getIteration()),ColetaDados::getIteration());
-        else
-            fprintf(ColetaDados::getFile(),"Max%dAv0It%d",ColetaDados::getMaxLevel(),ColetaDados::getIteration());
-        fprintf(ColetaDados::getFile(),"S%d",ColetaDados::getStep(cStruct.iBestX, cStruct.iBestY));
-        fprintf(ColetaDados::getFile(),"CCB%d",ColetaDados::getBlocosCalculados());
-        fprintf(ColetaDados::getFile(),"W%dH%d",iRoiWidth, iRoiHeight );
-        fprintf(ColetaDados::getFile(),"MV%d,%d",cStruct.iBestX, cStruct.iBestY);
-        fprintf(ColetaDados::getFile(),"X%dY%d\n",pcCU->getCUPelX(),pcCU->getCUPelY());
-         */
     }
     else{
         ColetaDados::incrementaNumPUsAsy();
